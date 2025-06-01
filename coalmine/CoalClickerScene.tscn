@@ -3,21 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://be1dyi3ydr8fi" path="res://AbstractClickerScene.tscn" id="1_w7jj6"]
 [ext_resource type="Script" path="res://coalmine/CoalClickerScript.gd" id="2_hi38u"]
 
-[node name="CoalClickerScene" node_paths=PackedStringArray("labelResource", "labelDigger", "buttonDigger", "diggerTimer") instance=ExtResource("1_w7jj6")]
-anchors_preset = 15
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="CoalClickerScene" instance=ExtResource("1_w7jj6")]
 script = ExtResource("2_hi38u")
-labelResource = NodePath("ValueResource")
-labelDigger = NodePath("ValueDigger")
-buttonDigger = NodePath("PanelContainer/MarginContainer/GridContainer/ButtonDigger")
-diggerTimer = NodePath("DiggerTimer")
 
 [node name="ButtonDig" parent="." index="1"]
 offset_left = -141.0
@@ -31,9 +18,3 @@ offset_left = 822.0
 offset_top = 20.0
 offset_right = 898.0
 offset_bottom = 47.0
-
-[node name="PanelContainer" parent="." index="4"]
-offset_left = 934.0
-offset_top = 4.0
-offset_right = 1153.0
-offset_bottom = 648.0

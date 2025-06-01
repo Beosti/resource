@@ -1,15 +1,12 @@
 class_name BaseUiClass
 extends Control
 
-var stoneMineScene = preload("res://stonemine/StoneClickerScene.tscn");
-var copperMineScene = preload("res://coppermine/CopperClickerScene.tscn");
-
 @export var stoneMineButton: Button;
 @export var copperMineButton: Button;
 @export var coalMineButton: Button;
 
 @export var stoneClickerScene: StoneClickerClass;
-@export var copperClickerScene: CopperClickerClass;
+@export var copperClickerScene: RawCopperClickerclass;
 @export var coalClickerScene: CoalClickerClass;
 
 @export var stoneResourceLabel: Label;
@@ -19,58 +16,49 @@ var copperMineScene = preload("res://coppermine/CopperClickerScene.tscn");
 @onready var mineContainer = $Mines;
 
 func _ready():
-	$Mines/StoneClicker.connect("main_menu_reset", main_menu);
-	$Mines/CopperClicker.connect("main_menu_reset", main_menu);
-	$Mines/CoalClicker.connect("main_menu_reset", main_menu);
-	$Mines/StoneClicker.connect("dig_stone_signal", change_stone_mine_text);
-	$Mines/CopperClicker.connect("dig_copper_signal", change_copper_mine_text);
-	$Mines/CoalClicker.connect("dig_resource_signal", change_coal_mine_text);
-	get_node("Mines/StoneClicker").hide();
-	get_node("Mines/CopperClicker").hide();
-	get_node("Mines/CoalClicker").hide();
+	stoneClickerScene.connect("main_menu_reset", main_menu);
+	copperClickerScene.connect("main_menu_reset", main_menu);
+	coalClickerScene.connect("main_menu_reset", main_menu);
+	stoneClickerScene.connect("dig_resource_signal", change_stone_mine_text);
+	copperClickerScene.connect("dig_resource_signal", change_copper_mine_text);
+	coalClickerScene.connect("dig_resource_signal", change_coal_mine_text);
+	stoneClickerScene.hide();
+	copperClickerScene.hide();
+	coalClickerScene.hide();
 	stoneMineButton.show();
 	copperMineButton.show();
 	coalMineButton.show();
 
 func change_stone_mine_text():
-	stoneResourceLabel.text = "Stone: %s" %stoneClickerScene.stone;
+	stoneResourceLabel.text = "Stone: %s" %stoneClickerScene.resource;
 	stoneResourceLabel.tooltip_text = "Generating %s stone per second" % stoneClickerScene.diggers;
 func change_copper_mine_text():
-	rawCopperResourceLabel.text = "Raw copper: %s" %copperClickerScene.copper;
+	rawCopperResourceLabel.text = "Raw copper: %s" %copperClickerScene.resource;
 	rawCopperResourceLabel.tooltip_text = "Generating %s raw copper per second" % copperClickerScene.diggers;
 func change_coal_mine_text():
 	coalResourceLabel.text = "Coal: %s" %coalClickerScene.resource;
 	coalResourceLabel.tooltip_text = "Generating %s coal per second" % coalClickerScene.diggers;
 
 func main_menu():
-	get_node("Mines/StoneClicker").hide();
-	get_node("Mines/CopperClicker").hide();
-	get_node("Mines/CoalClicker").hide();
-	stoneMineButton.show();
-	copperMineButton.show();
-	coalMineButton.show();
-	get_node("PanelContainer").show();
+	get_node("Mines/StoneClickerScene").hide();
+	get_node("Mines/RawCopperClickerScene").hide();
+	get_node("Mines/CoalClickerScene").hide();
+	get_node("ContainerMines").show();
 
 func _on_stone_mine_button_button_down() -> void:
-	get_node("Mines/StoneClicker").show();
+	get_node("Mines/StoneClickerScene").show();
 	hide_buttons();
 
 func _on_copper_mine_button_button_down() -> void:
-	get_node("Mines/CopperClicker").show();
+	get_node("Mines/RawCopperClickerScene").show();
 	hide_buttons();
 
 func _on_coal_mine_button_button_down() -> void:
-	get_node("Mines/CoalClicker").show();
+	get_node("Mines/CoalClickerScene").show();
 	hide_buttons();
 
 func hide_buttons():
-	get_node("PanelContainer").hide();
-	stoneMineButton.hide();
-	copperMineButton.hide();
-	coalMineButton.hide();
+	get_node("ContainerMines").hide();
 
 func show_buttons():
-	get_node("PanelContainer").show();
-	stoneMineButton.show();
-	copperMineButton.show();
-	coalMineButton.show();
+	get_node("ContainerMines").show();

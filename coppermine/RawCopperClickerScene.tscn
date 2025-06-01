@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4d4gvho1g7qj"]
+
+[ext_resource type="PackedScene" uid="uid://be1dyi3ydr8fi" path="res://AbstractClickerScene.tscn" id="1_xfk87"]
+[ext_resource type="Script" path="res://coppermine/RawCopperClickerScript.gd" id="2_jtuej"]
+
+[node name="RawCopperScene" instance=ExtResource("1_xfk87")]
+script = ExtResource("2_jtuej")

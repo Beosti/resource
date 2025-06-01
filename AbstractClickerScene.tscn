@@ -2,20 +2,18 @@
 
 [ext_resource type="Script" path="res://AbstractClickerClass.gd" id="1_k4pkf"]
 
-[node name="AbstractClickerScene" type="Control"]
+[node name="AbstractClickerScene" type="Control" node_paths=PackedStringArray("labelResource", "labelDigger", "buttonDigger", "diggerTimer")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -556.0
-offset_top = -304.0
-offset_right = -556.0
-offset_bottom = -304.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k4pkf")
+labelResource = NodePath("ValueResource")
+labelDigger = NodePath("ValueDigger")
+buttonDigger = NodePath("Upgrades/MarginContainer/GridContainer/ButtonDigger")
+diggerTimer = NodePath("DiggerTimer")
 
 [node name="ValueResource" type="Label" parent="."]
 layout_mode = 0
@@ -31,10 +29,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 411.0
-offset_top = 288.0
-offset_right = 687.0
-offset_bottom = 383.0
+offset_left = -120.0
+offset_top = -60.0
+offset_right = 120.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dig"
@@ -49,28 +47,61 @@ text = "Diggers: 0"
 
 [node name="DiggerTimer" type="Timer" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 914.0
-offset_top = -20.0
-offset_right = 1133.0
-offset_bottom = 625.0
+[node name="Upgrades" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -219.0
+offset_bottom = 346.0
+grow_horizontal = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Upgrades"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="Upgrades/MarginContainer"]
 layout_mode = 2
 
-[node name="MainUiButton" type="Button" parent="PanelContainer/MarginContainer/GridContainer"]
+[node name="ButtonDigger" type="Button" parent="Upgrades/MarginContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Acquire digger: 10 resource"
+
+[node name="OtherPlaces" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = -301.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherPlaces"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="OtherPlaces/MarginContainer"]
+layout_mode = 2
+
+[node name="MainUiButton" type="Button" parent="OtherPlaces/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Main Menu"
 
-[node name="ButtonDigger" type="Button" parent="PanelContainer/MarginContainer/GridContainer"]
+[node name="OtherMineButton1" type="Button" parent="OtherPlaces/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Acquire digger: 10 resource"
+text = "Other Mine 1"
+
+[node name="OtherMineButton2" type="Button" parent="OtherPlaces/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 2"
 
 [connection signal="button_down" from="ButtonDig" to="." method="_on_button_dig_button_down"]
 [connection signal="timeout" from="DiggerTimer" to="." method="_on_digger_timer_timeout"]
-[connection signal="button_down" from="PanelContainer/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]
-[connection signal="button_down" from="PanelContainer/MarginContainer/GridContainer/ButtonDigger" to="." method="_on_button_digger_button_down"]
+[connection signal="button_down" from="Upgrades/MarginContainer/GridContainer/ButtonDigger" to="." method="_on_button_digger_button_down"]
+[connection signal="button_down" from="OtherPlaces/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]
+[connection signal="button_down" from="OtherPlaces/MarginContainer/GridContainer/OtherMineButton1" to="." method="_on_other_mine_button_1_button_down"]
+[connection signal="button_down" from="OtherPlaces/MarginContainer/GridContainer/OtherMineButton2" to="." method="_on_other_mine_button_2_button_down"]

@@ -17,6 +17,7 @@ signal dig_resource_signal;
 
 func _ready():
 	self.connect("dig_resource_signal", update_resource_label_text);
+	labelResource.text = "%s: 0" %resourceName;
 	update_resource_label_text();
 	update_digger_label_text();
 	update_digger_button_text();
