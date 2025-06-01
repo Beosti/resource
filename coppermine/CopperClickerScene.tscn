@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://fxs3hk0hhmjh"]
+
+[ext_resource type="Script" path="res://coppermine/CopperClickerScript.gd" id="1_21qv1"]
+
+[node name="CopperClicker" type="Control" node_paths=PackedStringArray("labelCopper", "labelDigger", "buttonDigger", "diggerTimer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_21qv1")
+labelCopper = NodePath("ValueCopper")
+labelDigger = NodePath("ValueDigger")
+buttonDigger = NodePath("ButtonDigger")
+diggerTimer = NodePath("DiggerTimer")
+
+[node name="ValueCopper" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 23.0
+text = "Copper: 0"
+horizontal_alignment = 1
+
+[node name="ButtonDig" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -47.5
+offset_right = 138.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dig"
+
+[node name="ButtonDigger" type="Button" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 45.0
+offset_right = 233.0
+offset_bottom = 114.0
+text = "Acquire digger: 10 copper"
+
+[node name="ValueDigger" type="Label" parent="."]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 123.0
+offset_right = 222.0
+offset_bottom = 150.0
+text = "Diggers: 0"
+
+[node name="DiggerTimer" type="Timer" parent="."]
+
+[node name="MainMenuResetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 907.0
+offset_top = 83.0
+offset_right = 967.0
+offset_bottom = 124.0
+text = "Main Menu"
+
+[connection signal="button_down" from="ButtonDig" to="." method="_on_button_dig_button_down"]
+[connection signal="button_down" from="ButtonDigger" to="." method="_on_button_digger_button_down"]
+[connection signal="timeout" from="DiggerTimer" to="." method="_on_digger_timer_timeout"]
+[connection signal="button_down" from="MainMenuResetButton" to="." method="_on_main_menu_reset_button_button_down"]
