@@ -12,8 +12,10 @@ var diggers : int = 0;
 var costDiggers : int = 10;
 
 signal main_menu_reset;
+signal dig_copper_signal;
 
 func _ready():
+	self.connect("dig_copper_signal", update_copper_label_text);
 	update_copper_label_text();
 	update_digger_label_text();
 	update_digger_button_text();
@@ -33,7 +35,7 @@ func _on_button_dig_button_down() -> void:
 
 func dig_copper(amount: int):
 	copper += amount;
-	update_copper_label_text();
+	dig_copper_signal.emit();
 
 func increase_digger(amount: int):
 	diggers += amount;
@@ -54,7 +56,6 @@ func update_digger_button_text():
 
 func _on_digger_timer_timeout() -> void:
 	dig_copper(diggers);
-
 
 func _on_main_menu_reset_button_button_down() -> void:
 	main_menu_reset.emit();

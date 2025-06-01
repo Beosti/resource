@@ -1,25 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://fxs3hk0hhmjh"]
+[gd_scene load_steps=2 format=3 uid="uid://be1dyi3ydr8fi"]
 
-[ext_resource type="Script" path="res://coppermine/CopperClickerScript.gd" id="1_21qv1"]
+[ext_resource type="Script" path="res://AbstractClickerClass.gd" id="1_k4pkf"]
 
-[node name="CopperClicker" type="Control" node_paths=PackedStringArray("labelCopper", "labelDigger", "buttonDigger", "diggerTimer")]
+[node name="AbstractClickerScene" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -556.0
+offset_top = -304.0
+offset_right = -556.0
+offset_bottom = -304.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_21qv1")
-labelCopper = NodePath("ValueCopper")
-labelDigger = NodePath("ValueDigger")
-buttonDigger = NodePath("ButtonDigger")
-diggerTimer = NodePath("DiggerTimer")
+script = ExtResource("1_k4pkf")
 
-[node name="ValueCopper" type="Label" parent="."]
+[node name="ValueResource" type="Label" parent="."]
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 23.0
-text = "Copper: 0"
+text = "Resource: 0"
 horizontal_alignment = 1
 
 [node name="ButtonDig" type="Button" parent="."]
@@ -29,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -47.0
-offset_right = 136.0
-offset_bottom = 48.0
+offset_left = 411.0
+offset_top = 288.0
+offset_right = 687.0
+offset_bottom = 383.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dig"
@@ -43,7 +45,7 @@ offset_left = 86.0
 offset_top = 45.0
 offset_right = 233.0
 offset_bottom = 114.0
-text = "Acquire digger: 10 copper"
+text = "Acquire digger: 10 resource"
 
 [node name="ValueDigger" type="Label" parent="."]
 layout_mode = 0
@@ -55,15 +57,15 @@ text = "Diggers: 0"
 
 [node name="DiggerTimer" type="Timer" parent="."]
 
-[node name="MainMenuResetButton" type="Button" parent="."]
+[node name="MainUiButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 907.0
-offset_top = 83.0
-offset_right = 967.0
-offset_bottom = 124.0
+offset_left = 879.0
+offset_top = 57.0
+offset_right = 992.0
+offset_bottom = 107.0
 text = "Main Menu"
 
 [connection signal="button_down" from="ButtonDig" to="." method="_on_button_dig_button_down"]
 [connection signal="button_down" from="ButtonDigger" to="." method="_on_button_digger_button_down"]
 [connection signal="timeout" from="DiggerTimer" to="." method="_on_digger_timer_timeout"]
-[connection signal="button_down" from="MainMenuResetButton" to="." method="_on_main_menu_reset_button_button_down"]
+[connection signal="button_down" from="MainUiButton" to="." method="_on_main_ui_button_button_down"]

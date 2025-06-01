@@ -1,18 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbksm33ruhkyo"]
+[gd_scene load_steps=5 format=3 uid="uid://cbksm33ruhkyo"]
 
-[ext_resource type="Script" path="res://BaseUiScane.gd" id="1_2sfg5"]
+[ext_resource type="Script" path="res://BaseUiScene.gd" id="1_2sfg5"]
 [ext_resource type="PackedScene" uid="uid://bctofe3evto16" path="res://stonemine/StoneClickerScene.tscn" id="2_e76hg"]
 [ext_resource type="PackedScene" uid="uid://fxs3hk0hhmjh" path="res://coppermine/CopperClickerScene.tscn" id="3_3te1q"]
+[ext_resource type="PackedScene" uid="uid://c2oo4ppfxb1w7" path="res://coalmine/CoalClickerScene.tscn" id="4_2mc48"]
 
-[node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "stoneClickerScene")]
+[node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 59.0
-offset_bottom = 44.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_2sfg5")
 stoneMineButton = NodePath("StoneMineButton")
 copperMineButton = NodePath("CopperMineButton")
+coalMineButton = NodePath("CoalMineButton")
 stoneClickerScene = NodePath("Mines/StoneClicker")
+copperClickerScene = NodePath("Mines/CopperClicker")
+coalClickerScene = NodePath("Mines/CoalClicker")
 
 [node name="Mines" type="Node" parent="."]
 
@@ -26,22 +34,44 @@ offset_bottom = -324.0
 [node name="CopperClicker" parent="Mines" instance=ExtResource("3_3te1q")]
 visible = false
 
+[node name="CoalClicker" parent="Mines" instance=ExtResource("4_2mc48")]
+visible = false
+metadata/_edit_use_anchors_ = true
+
 [node name="StoneMineButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 333.0
-offset_right = 401.0
-offset_bottom = 410.0
+offset_left = -368.0
+offset_top = -41.0
+offset_right = -183.0
+offset_bottom = 36.0
 text = "Stone Mine
 Stone: 0"
 
 [node name="CopperMineButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 591.0
-offset_top = 332.0
-offset_right = 756.0
-offset_bottom = 413.0
-text = "CopperMine"
+offset_left = 162.0
+offset_top = -45.0
+offset_right = 327.0
+offset_bottom = 36.0
+text = "Copper Mine
+Raw copper: 0"
+
+[node name="CoalMineButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -37.0
+offset_right = 83.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coal Mine
+Raw coal: 0"
 
 [connection signal="button_down" from="StoneMineButton" to="." method="_on_stone_mine_button_button_down"]
 [connection signal="button_down" from="CopperMineButton" to="." method="_on_copper_mine_button_button_down"]
+[connection signal="button_down" from="CoalMineButton" to="." method="_on_coal_mine_button_button_down"]

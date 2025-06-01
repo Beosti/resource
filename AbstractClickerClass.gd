@@ -10,7 +10,7 @@ extends Node
 var resource : int = 0;
 var diggers : int = 0;
 var costDiggers : int = 10;
-var resourceName : String = "";
+var resourceName : String = "resource";
 
 signal main_menu_reset;
 signal dig_resource_signal;
@@ -35,7 +35,7 @@ func _on_button_dig_button_down() -> void:
 
 func dig_resource(amount: int):
 	resource += amount;
-	dig_resource_signal.emit;
+	dig_resource_signal.emit();
 
 func increase_digger(amount: int):
 	diggers += amount;
@@ -46,7 +46,7 @@ func increase_digger_amount(amount: int):
 	update_digger_button_text();
 
 func update_resource_label_text():
-	labelResource.text = "%s: %s\nPassive generation: +%s/s" % [resourceName, resource, diggers];
+	labelResource.text = "%s: %d\nPassive generation: +%d/s" % [resourceName, resource, diggers]
 
 func update_digger_label_text():
 	labelDigger.text = "Diggers: %s" %diggers;
