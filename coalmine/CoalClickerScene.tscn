@@ -16,7 +16,7 @@ offset_bottom = 0.0
 script = ExtResource("2_hi38u")
 labelResource = NodePath("ValueResource")
 labelDigger = NodePath("ValueDigger")
-buttonDigger = NodePath("ButtonDigger")
+buttonDigger = NodePath("PanelContainer/MarginContainer/GridContainer/ButtonDigger")
 diggerTimer = NodePath("DiggerTimer")
 
 [node name="ButtonDig" parent="." index="1"]
@@ -25,3 +25,15 @@ offset_top = -54.0
 offset_right = 135.0
 offset_bottom = 41.0
 metadata/_edit_use_anchors_ = true
+
+[node name="ValueDigger" parent="." index="2"]
+offset_left = 822.0
+offset_top = 20.0
+offset_right = 898.0
+offset_bottom = 47.0
+
+[node name="PanelContainer" parent="." index="4"]
+offset_left = 934.0
+offset_top = 4.0
+offset_right = 1153.0
+offset_bottom = 648.0

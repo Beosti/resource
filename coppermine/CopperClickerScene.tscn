@@ -12,7 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_21qv1")
 labelCopper = NodePath("ValueCopper")
 labelDigger = NodePath("ValueDigger")
-buttonDigger = NodePath("ButtonDigger")
+buttonDigger = NodePath("PanelContainer/MarginContainer/GridContainer/ButtonDigger")
 diggerTimer = NodePath("DiggerTimer")
 
 [node name="ValueCopper" type="Label" parent="."]
@@ -37,33 +37,37 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Dig"
 
-[node name="ButtonDigger" type="Button" parent="."]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 45.0
-offset_right = 233.0
-offset_bottom = 114.0
-text = "Acquire digger: 10 copper"
-
 [node name="ValueDigger" type="Label" parent="."]
 layout_mode = 0
-offset_left = 146.0
-offset_top = 123.0
-offset_right = 222.0
-offset_bottom = 150.0
+offset_left = 844.0
+offset_top = 8.0
+offset_right = 920.0
+offset_bottom = 35.0
 text = "Diggers: 0"
 
 [node name="DiggerTimer" type="Timer" parent="."]
 
-[node name="MainMenuResetButton" type="Button" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 907.0
-offset_top = 83.0
-offset_right = 967.0
-offset_bottom = 124.0
+offset_left = 945.0
+offset_right = 1150.0
+offset_bottom = 645.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MainMenuResetButton" type="Button" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
 text = "Main Menu"
 
+[node name="ButtonDigger" type="Button" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Acquire digger: 10 copper"
+
 [connection signal="button_down" from="ButtonDig" to="." method="_on_button_dig_button_down"]
-[connection signal="button_down" from="ButtonDigger" to="." method="_on_button_digger_button_down"]
 [connection signal="timeout" from="DiggerTimer" to="." method="_on_digger_timer_timeout"]
-[connection signal="button_down" from="MainMenuResetButton" to="." method="_on_main_menu_reset_button_button_down"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/GridContainer/MainMenuResetButton" to="." method="_on_main_menu_reset_button_button_down"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/GridContainer/ButtonDigger" to="." method="_on_button_digger_button_down"]

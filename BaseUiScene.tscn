@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbksm33ruhkyo"]
+[gd_scene load_steps=8 format=3 uid="uid://cbksm33ruhkyo"]
 
 [ext_resource type="Script" path="res://BaseUiScene.gd" id="1_2sfg5"]
 [ext_resource type="PackedScene" uid="uid://bctofe3evto16" path="res://stonemine/StoneClickerScene.tscn" id="2_e76hg"]
 [ext_resource type="PackedScene" uid="uid://fxs3hk0hhmjh" path="res://coppermine/CopperClickerScene.tscn" id="3_3te1q"]
 [ext_resource type="PackedScene" uid="uid://c2oo4ppfxb1w7" path="res://coalmine/CoalClickerScene.tscn" id="4_2mc48"]
+[ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="5_t6ims"]
+[ext_resource type="Texture2D" uid="uid://tbie2dxw2tq2" path="res://textures/coal_resource.png" id="6_ppter"]
+[ext_resource type="Texture2D" uid="uid://ctpi17npg4q34" path="res://textures/raw_copper_resource.png" id="7_h5um4"]
 
-[node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene")]
+[node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene", "stoneResourceLabel", "coalResourceLabel", "rawCopperResourceLabel")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,15 +24,14 @@ coalMineButton = NodePath("CoalMineButton")
 stoneClickerScene = NodePath("Mines/StoneClicker")
 copperClickerScene = NodePath("Mines/CopperClicker")
 coalClickerScene = NodePath("Mines/CoalClicker")
+stoneResourceLabel = NodePath("PanelContainer/MarginContainer/GridContainer/StoneResourceLabel")
+coalResourceLabel = NodePath("PanelContainer/MarginContainer/GridContainer/CoalResourceLabel")
+rawCopperResourceLabel = NodePath("PanelContainer/MarginContainer/GridContainer/RawCopperResourceLabel")
 
 [node name="Mines" type="Node" parent="."]
 
 [node name="StoneClicker" parent="Mines" instance=ExtResource("2_e76hg")]
 visible = false
-offset_left = -576.0
-offset_top = -324.0
-offset_right = -576.0
-offset_bottom = -324.0
 
 [node name="CopperClicker" parent="Mines" instance=ExtResource("3_3te1q")]
 visible = false
@@ -40,12 +42,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="StoneMineButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = -368.0
-offset_top = -41.0
-offset_right = -183.0
-offset_bottom = 36.0
-text = "Stone Mine
-Stone: 0"
+offset_left = -310.0
+offset_top = -42.0
+offset_right = -125.0
+offset_bottom = 35.0
+text = "Stone Mine"
 
 [node name="CopperMineButton" type="Button" parent="."]
 layout_mode = 0
@@ -53,8 +54,7 @@ offset_left = 162.0
 offset_top = -45.0
 offset_right = 327.0
 offset_bottom = 36.0
-text = "Copper Mine
-Raw copper: 0"
+text = "Copper Mine"
 
 [node name="CoalMineButton" type="Button" parent="."]
 layout_mode = 1
@@ -69,8 +69,59 @@ offset_right = 83.0
 offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Coal Mine
-Raw coal: 0"
+text = "Coal Mine"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = -574.0
+offset_top = -325.0
+offset_right = -330.0
+offset_bottom = -127.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="StoneTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Basic resource, not really used for much. Can be sold though!"
+texture = ExtResource("5_t6ims")
+expand_mode = 2
+
+[node name="StoneResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 28
+text = "Stone: 0"
+
+[node name="CoalTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Coal is a resource you gather to smelt as fuel or as ingredient to create even better resources!"
+texture = ExtResource("6_ppter")
+
+[node name="CoalResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 28
+text = "Coal: 0"
+
+[node name="RawCopperTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "The basic ingredient for tons of other stuff! "
+texture = ExtResource("7_h5um4")
+
+[node name="RawCopperResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 28
+text = "Raw copper: 0"
 
 [connection signal="button_down" from="StoneMineButton" to="." method="_on_stone_mine_button_button_down"]
 [connection signal="button_down" from="CopperMineButton" to="." method="_on_copper_mine_button_button_down"]
