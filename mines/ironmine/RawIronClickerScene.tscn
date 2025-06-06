@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb83hu7saj16e"]
+
+[ext_resource type="PackedScene" uid="uid://be1dyi3ydr8fi" path="res://AbstractClickerScene.tscn" id="1_klage"]
+[ext_resource type="Script" path="res://mines/ironmine/RawIronClickerScript.gd" id="2_cnven"]
+
+[node name="RawIronClickerScene" instance=ExtResource("1_klage")]
+script = ExtResource("2_cnven")

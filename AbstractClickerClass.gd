@@ -7,11 +7,10 @@ extends Node
 
 @export var diggerTimer: Timer;
 
-var resource : int = 0;
 var diggers : int = 0;
 var costDiggers : int = 10;
 var resourceName : String = "resource";
-
+var resourceID : String = "id";
 signal main_menu_reset;
 signal dig_resource_signal;
 
@@ -23,7 +22,7 @@ func _ready():
 	update_digger_button_text();
 
 func _on_button_digger_button_down() -> void:
-	if resource < costDiggers:
+	if GameData.get_amount(resourceID) < costDiggers:
 		return;
 	if (diggers == 0):
 		diggerTimer.start();
@@ -35,7 +34,7 @@ func _on_button_dig_button_down() -> void:
 	dig_resource(1);
 
 func dig_resource(amount: int):
-	resource += amount;
+	GameData.add_amount(resourceID, amount);
 	dig_resource_signal.emit();
 
 func increase_digger(amount: int):
@@ -47,7 +46,7 @@ func increase_digger_amount(amount: int):
 	update_digger_button_text();
 
 func update_resource_label_text():
-	labelResource.text = "%s: %d\nPassive generation: +%d/s" % [resourceName, resource, diggers]
+	labelResource.text = "%s: %d\nPassive generation: +%d/s" % [resourceName, GameData.get_amount(resourceID), diggers]
 
 func update_digger_label_text():
 	labelDigger.text = "Diggers: %s" %diggers;

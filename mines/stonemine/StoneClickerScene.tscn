@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2r0cwflbfwf6"]
 
 [ext_resource type="PackedScene" uid="uid://be1dyi3ydr8fi" path="res://AbstractClickerScene.tscn" id="1_yq0gh"]
-[ext_resource type="Script" path="res://stonemine/StoneClickerScript.gd" id="2_hvy4q"]
+[ext_resource type="Script" path="res://mines/stonemine/StoneClickerScript.gd" id="2_hvy4q"]
 
 [node name="StoneClickerScene" instance=ExtResource("1_yq0gh")]
 script = ExtResource("2_hvy4q")
