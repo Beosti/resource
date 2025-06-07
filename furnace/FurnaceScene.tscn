@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbx8bkk7b8v6x"]
+[gd_scene load_steps=4 format=3 uid="uid://smf4agf45gv"]
 
 [ext_resource type="Script" path="res://furnace/FurnaceScript.gd" id="1_bpwv0"]
 [ext_resource type="Texture2D" uid="uid://ctpi17npg4q34" path="res://textures/raw_copper_resource.png" id="2_owdje"]
 [ext_resource type="Texture2D" uid="uid://ctph7qi2shfa8" path="res://textures/raw_iron_resource.png" id="3_63cgs"]
 
-[node name="FurnaceScene" type="Control" node_paths=PackedStringArray("amountCoalInText", "amountOreInText", "labelOutput", "optionButton", "timer", "waitTimerLabel")]
+[node name="FurnaceScreen" type="Control" node_paths=PackedStringArray("amountCoalInText", "amountOreInText", "optionButton", "timer", "waitTimerLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,45 +12,157 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bpwv0")
-amountCoalInText = NodePath("AmountCoal")
-amountOreInText = NodePath("AmountOre")
-labelOutput = NodePath("Label")
-optionButton = NodePath("OptionButton")
+amountCoalInText = NodePath("ControlCoal/ControlBoxCoal/BoxCoal")
+amountOreInText = NodePath("ControlOre/ControlBoxOre/BoxOre")
+optionButton = NodePath("ControlOption/ControlBoxOption/BoxOption")
 timer = NodePath("Timer")
-waitTimerLabel = NodePath("WaitTime")
+waitTimerLabel = NodePath("ControlOption/ControlTimeText/TimeText")
 
-[node name="AmountCoal" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 152.0
-offset_top = 190.0
-offset_right = 409.0
-offset_bottom = 345.0
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+
+[node name="ControlCoal" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -99.5
+offset_right = 257.0
+offset_bottom = 99.5
+grow_vertical = 2
+
+[node name="ControlBoxCoal" type="Control" parent="ControlCoal"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.5
+offset_right = 128.5
+offset_bottom = 155.0
+grow_horizontal = 2
+
+[node name="BoxCoal" type="LineEdit" parent="ControlCoal/ControlBoxCoal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 placeholder_text = "Amount coal"
+alignment = 1
 virtual_keyboard_type = 2
 
-[node name="AmountOre" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 537.0
-offset_top = 189.0
-offset_right = 818.0
-offset_bottom = 339.0
+[node name="ControlTextCoal" type="Control" parent="ControlCoal"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextCoal" type="Label" parent="ControlCoal/ControlTextCoal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[node name="ControlOre" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -99.5
+offset_bottom = 99.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ControlBoxOre" type="Control" parent="ControlOre"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.5
+offset_right = 128.5
+offset_bottom = 155.0
+grow_horizontal = 2
+
+[node name="BoxOre" type="LineEdit" parent="ControlOre/ControlBoxOre"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 placeholder_text = "Amount  Ore"
+alignment = 1
 virtual_keyboard_type = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 398.0
-offset_top = 448.0
-offset_right = 555.0
-offset_bottom = 543.0
-text = "Amount output"
+[node name="ControlTextOre" type="Control" parent="ControlOre"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="OptionButton" type="OptionButton" parent="."]
-layout_mode = 0
-offset_left = 573.0
-offset_top = 21.0
-offset_right = 708.0
-offset_bottom = 123.0
+[node name="TextOre" type="Label" parent="ControlOre/ControlTextOre"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlOption" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -80.0
+offset_right = 72.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlBoxOption" type="Control" parent="ControlOption"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.5
+offset_right = 72.5
+offset_bottom = 120.0
+grow_horizontal = 2
+
+[node name="BoxOption" type="OptionButton" parent="ControlOption/ControlBoxOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 selected = 0
 item_count = 2
 popup/item_0/text = "Raw Copper"
@@ -59,30 +171,27 @@ popup/item_1/text = "Raw Iron"
 popup/item_1/icon = ExtResource("3_63cgs")
 popup/item_1/id = 1
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 6.0
+[node name="ControlTimeText" type="Control" parent="ControlOption"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.5
+offset_top = -19.0
+offset_right = 20.5
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="WaitTime" type="Label" parent="."]
-layout_mode = 0
-offset_left = 449.0
-offset_top = 249.0
-offset_right = 489.0
-offset_bottom = 272.0
+[node name="TimeText" type="Label" parent="ControlOption/ControlTimeText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AmountRawOreInFurnace" type="Label" parent="."]
-layout_mode = 0
-offset_left = 674.0
-offset_top = 389.0
-offset_right = 714.0
-offset_bottom = 412.0
-
-[node name="AmountCoalInFurnace" type="Label" parent="."]
-layout_mode = 0
-offset_left = 265.0
-offset_top = 387.0
-offset_right = 305.0
-offset_bottom = 410.0
-
-[connection signal="text_submitted" from="AmountCoal" to="." method="_on_amount_coal_text_submitted"]
-[connection signal="text_submitted" from="AmountOre" to="." method="_on_amount_ore_text_submitted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="text_submitted" from="ControlCoal/ControlBoxCoal/BoxCoal" to="." method="_on_amount_coal_text_submitted"]
+[connection signal="text_submitted" from="ControlOre/ControlBoxOre/BoxOre" to="." method="_on_amount_ore_text_submitted"]

@@ -3,20 +3,19 @@ extends Control
 
 @export var amountCoalInText: LineEdit;
 @export var amountOreInText: LineEdit;
-@export var labelOutput: Label;
 @export var optionButton: OptionButton;
 @export var timer: Timer;
 @export var waitTimerLabel: Label;
 
-@onready var amountCoalInFurnaceText = $AmountCoalInFurnace;
-@onready var amountRawOreInFurnaceText = $AmountRawOreInFurnace;
+@onready var amountCoalInFurnaceText = $ControlCoal/ControlTextCoal/TextCoal;
+@onready var amountRawOreInFurnaceText = $ControlOre/ControlTextOre/TextOre;
 
 var amountCoalInFurnace: int;
 var typeOreInFurnace: String;
 var amountOreInFurnace: int;
 var amountPureOre: int;
 
-signal smelt_ore_signal;
+signal smelt_ore_signal(typeOre: String);
 
 func _process(delta: float) -> void:
 	waitTimerLabel.text = "%.1f" %timer.get_time_left();
@@ -28,7 +27,10 @@ func _on_amount_coal_text_submitted(new_text: String) -> void:
 		return;
 	if (amountCoalInText.text.is_empty()):
 		return;
+	if (new_text.to_int() > GameData.coalAmount):
+		return;
 	amountCoalInText.clear();
+	GameData.add_amount(GameData.COAL_ID, -new_text.to_int());
 	amountCoalInFurnace += new_text.to_int();
 	print("Total coal: %s" %amountCoalInFurnace);
 	if (amountOreInFurnace > 0 && amountCoalInFurnace > 0):
@@ -43,24 +45,26 @@ func _on_amount_ore_text_submitted(new_text: String) -> void:
 		typeOreInFurnace = optionButton.get_item_text(optionButton.get_selected_id());
 	if (optionButton.get_item_text(optionButton.get_selected_id()) != typeOreInFurnace):
 		return;
+	if (new_text.to_int() > GameData.get_amount(GameData.match_id(optionButton.get_item_text(optionButton.get_selected_id())))):
+		return;
 	print(optionButton.get_item_text(optionButton.get_selected_id()));
 	amountOreInText.clear();
+	GameData.add_amount(GameData.match_id(optionButton.get_item_text(optionButton.get_selected_id())), -new_text.to_int());
 	amountOreInFurnace += new_text.to_int();
 	print("Total ore in furnace: %s" %amountOreInFurnace);
 	if (amountOreInFurnace > 0 && amountCoalInFurnace > 0):
 		timer.start();
 
 func _on_timer_timeout() -> void:
-	print("extra ore!")
 	if (typeOreInFurnace == GameData.RAW_COPPER_RESOURCE):
 		GameData.add_amount(GameData.COPPER_MATTE_ID, 1);
+		smelt_ore_signal.emit(GameData.COPPER_MATTE_ID);
 	if (typeOreInFurnace == GameData.RAW_IRON_RESOURCE):
 		GameData.add_amount(GameData.PIG_IRON_ID, 1);
-	smelt_ore_signal.emit();
+		smelt_ore_signal.emit(GameData.PIG_IRON_ID);
 	amountPureOre += 1;
 	amountCoalInFurnace -= 1;
 	amountOreInFurnace -= 1;
-	#labelOutput.text = "%s" %amountPureOre;
 	if (amountCoalInFurnace == 0):
 		print("no coal anymore");
 		timer.stop();

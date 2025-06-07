@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://djdss5k68xxkq"]
+
+[ext_resource type="Script" path="res://furnace/FurnaceScreenScript.gd" id="1_irvg0"]
+[ext_resource type="PackedScene" uid="uid://smf4agf45gv" path="res://furnace/FurnaceScene.tscn" id="1_pjp15"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_irvg0")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.218
+anchor_right = 0.806
+anchor_bottom = 1.0
+offset_left = -6.13599
+offset_right = -0.511963
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer2"]
+layout_mode = 2
+
+[node name="FurnaceScreen2" parent="PanelContainer2/GridContainer" instance=ExtResource("1_pjp15")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FurnaceScreen3" parent="PanelContainer2/GridContainer" instance=ExtResource("1_pjp15")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FurnaceScreen4" parent="PanelContainer2/GridContainer" instance=ExtResource("1_pjp15")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OtherPlaces2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -301.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherPlaces2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="OtherPlaces2/MarginContainer"]
+layout_mode = 2
+
+[node name="MainUiButton" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Menu"
+
+[node name="OtherMineButton1" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 1"
+
+[node name="OtherMineButton2" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 2"
+
+[connection signal="button_down" from="OtherPlaces2/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]

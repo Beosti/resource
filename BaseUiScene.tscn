@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbksm33ruhkyo"]
+[gd_scene load_steps=14 format=3 uid="uid://cbksm33ruhkyo"]
 
 [ext_resource type="Script" path="res://BaseUiScene.gd" id="1_2sfg5"]
 [ext_resource type="PackedScene" uid="uid://c2r0cwflbfwf6" path="res://mines/stonemine/StoneClickerScene.tscn" id="2_e76hg"]
@@ -12,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://ctph7qi2shfa8" path="res://textures/raw_iron_resource.png" id="9_7vyqw"]
 [ext_resource type="Texture2D" uid="uid://bsesvs55kqt0f" path="res://textures/copper_matte_resource.png" id="10_rltgu"]
 [ext_resource type="Texture2D" uid="uid://b68phbdv380yr" path="res://textures/pig_iron_resource.png" id="11_aifsg"]
+[ext_resource type="PackedScene" uid="uid://djdss5k68xxkq" path="res://furnace/FurnaceScreen.tscn" id="13_d1j76"]
 
-[node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "rawIronMineButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene", "rawIronClickerScene", "stoneResourceLabel", "coalResourceLabel", "rawCopperResourceLabel", "rawIronResourceLabel")]
+[node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "rawIronMineButton", "furnaceButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene", "rawIronClickerScene", "furnaceScene", "stoneResourceLabel", "coalResourceLabel", "rawCopperResourceLabel", "rawIronResourceLabel", "copperMatteResourceLabel", "pigIronResourceLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,14 +26,18 @@ stoneMineButton = NodePath("ContainerMines/MarginContainer/GridContainer/StoneMi
 copperMineButton = NodePath("ContainerMines/MarginContainer/GridContainer/CopperMineButton")
 coalMineButton = NodePath("ContainerMines/MarginContainer/GridContainer/CoalMineButton")
 rawIronMineButton = NodePath("ContainerMines/MarginContainer/GridContainer/RawIronMineButton")
+furnaceButton = NodePath("ContainerMines/MarginContainer/GridContainer/FurnaceButton")
 stoneClickerScene = NodePath("Mines/StoneClickerScene")
 copperClickerScene = NodePath("Mines/RawCopperClickerScene")
 coalClickerScene = NodePath("Mines/CoalClickerScene")
 rawIronClickerScene = NodePath("Mines/RawIronClickerScene")
+furnaceScene = NodePath("FurnaceScreen")
 stoneResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/StoneResourceLabel")
 coalResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/CoalResourceLabel")
 rawCopperResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/RawCopperResourceLabel")
 rawIronResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/RawIronResourceLabel")
+copperMatteResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/CopperMatteResource")
+pigIronResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/PigIronResource")
 
 [node name="Mines" type="Node" parent="."]
 
@@ -116,6 +121,8 @@ texture = ExtResource("10_rltgu")
 
 [node name="CopperMatteResource" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Copper Matte: 0"
 
 [node name="PigIronTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -123,6 +130,8 @@ texture = ExtResource("11_aifsg")
 
 [node name="PigIronResource" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Pig Iron: 0"
 
 [node name="ContainerMines" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -170,10 +179,21 @@ size_flags_vertical = 3
 text = "Iron Mine
 "
 
+[node name="FurnaceButton" type="Button" parent="ContainerMines/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Furnace"
+
 [node name="ResourceDataClass" type="Node" parent="."]
 script = ExtResource("8_bm5li")
+
+[node name="FurnaceScreen" parent="." instance=ExtResource("13_d1j76")]
+layout_mode = 1
+offset_left = 3.0
 
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/StoneMineButton" to="." method="_on_stone_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/CopperMineButton" to="." method="_on_copper_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/CoalMineButton" to="." method="_on_coal_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/RawIronMineButton" to="." method="_on_raw_iron_mine_button_button_down"]
+[connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/FurnaceButton" to="." method="_on_furnace_button_button_down"]
