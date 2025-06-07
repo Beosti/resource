@@ -1,24 +1,42 @@
 class_name ResourceDataClass
 extends Node
 
-var STONE_RESOURCE = "Stone";
-var STONE_ID = "stone";
+# General resources
+const STONE_RESOURCE = "Stone";
+const STONE_ID = "stone";
+const STONE_VALUE = 1;
 var stoneAmount = 0;
-var RAW_COPPER_RESOURCE = "Raw Copper";
-var RAW_COPPER_ID = "raw_copper";
+const RAW_COPPER_RESOURCE = "Raw Copper";
+const RAW_COPPER_ID = "raw_copper";
+const RAW_COPPER_VALUE = 3;
 var rawCopperAmount = 0;
-var COAL_RESOURCE = "Coal";
-var COAL_ID = "coal";
+const COAL_RESOURCE = "Coal";
+const COAL_ID = "coal";
+const COAL_VALUE = 2;
 var coalAmount = 0;
-var RAW_IRON_RESOURCE = "Raw Iron";
-var RAW_IRON_ID = "raw_iron";
+const RAW_IRON_RESOURCE = "Raw Iron";
+const RAW_IRON_ID = "raw_iron";
+const RAW_IRON_VALUE = 3;
 var rawIronAmount = 0;
-var PIG_IRON_RESOURCE = "Pig Iron";
-var PIG_IRON_ID = "pig_iron";
+const PIG_IRON_RESOURCE = "Pig Iron";
+const PIG_IRON_ID = "pig_iron";
+const PIG_IRON_VALUE = 2;
 var pigIronAmount = 0; 
-var COPPER_MATTE_RESOURCE = "Copper Mate";
-var COPPER_MATTE_ID = "copper_matte";
+const COPPER_MATTE_RESOURCE = "Copper Mate";
+const COPPER_MATTE_ID = "copper_matte";
+const COPPER_MATTE_VALUE = 2;
 var copperMatteAmount = 0;
+
+# wealth 
+const ZERRE_RESOURCE = "Zerre";
+const ZERRE_ID = "zerre";
+var zerreAmount = 0;
+
+func add_zerre_amount(amount: int):
+	zerreAmount += amount;
+
+func get_zerre_amount() -> int:
+	return zerreAmount;
 
 func add_amount(resourceID: String, amount: int):
 	match resourceID:

@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvhj3u60j2qh8"]
+
+[ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_5ljbd"]
+[ext_resource type="Script" path="res://merchant/MerchantSceneScript.gd" id="1_l2n3e"]
+[ext_resource type="Texture2D" uid="uid://tbie2dxw2tq2" path="res://textures/coal_resource.png" id="2_rotqn"]
+[ext_resource type="Texture2D" uid="uid://ctpi17npg4q34" path="res://textures/raw_copper_resource.png" id="3_n5b7k"]
+[ext_resource type="Texture2D" uid="uid://ctph7qi2shfa8" path="res://textures/raw_iron_resource.png" id="4_qsxn8"]
+[ext_resource type="Texture2D" uid="uid://bsesvs55kqt0f" path="res://textures/copper_matte_resource.png" id="5_erw8a"]
+[ext_resource type="Texture2D" uid="uid://b68phbdv380yr" path="res://textures/pig_iron_resource.png" id="6_ryiq8"]
+
+[node name="MerchantScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l2n3e")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainerResources" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="StoneTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+tooltip_text = "Basic resource, not really used for much. Can be sold though!"
+texture = ExtResource("1_5ljbd")
+expand_mode = 2
+
+[node name="StoneResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 22
+text = "Stone: 1"
+
+[node name="LineEditStone" type="LineEdit" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+placeholder_text = "Sell"
+alignment = 1
+
+[node name="CoalTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+tooltip_text = "Coal is a resource you gather to smelt as fuel or as ingredient to create even better resources!"
+texture = ExtResource("2_rotqn")
+
+[node name="CoalResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 22
+text = "Coal: 2"
+
+[node name="LineEditCoal" type="LineEdit" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+placeholder_text = "Sell"
+alignment = 1
+
+[node name="RawCopperTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+tooltip_text = "The basic ingredient for tons of other stuff! "
+texture = ExtResource("3_n5b7k")
+
+[node name="RawCopperResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 22
+text = "Raw copper: 3"
+
+[node name="LineEditRawCopper" type="LineEdit" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+placeholder_text = "Sell"
+alignment = 1
+
+[node name="RawIronTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+texture = ExtResource("4_qsxn8")
+
+[node name="RawIronResourceLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 22
+text = "Raw iron: 3"
+
+[node name="LineEditRawIron" type="LineEdit" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+placeholder_text = "Sell"
+alignment = 1
+
+[node name="CopperMatteTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+texture = ExtResource("5_erw8a")
+
+[node name="CopperMatteResource" type="Label" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Copper Matte: 2"
+
+[node name="LineEditCopperMatte" type="LineEdit" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+placeholder_text = "Sell"
+alignment = 1
+
+[node name="PigIronTexture" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+texture = ExtResource("6_ryiq8")
+
+[node name="PigIronResource" type="Label" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Pig Iron: 2"
+
+[node name="LineEditPigIron" type="LineEdit" parent="PanelContainer/MarginContainer/GridContainerResources"]
+layout_mode = 2
+placeholder_text = "Sell"
+alignment = 1
+
+[node name="OtherPlaces2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -301.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherPlaces2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="OtherPlaces2/MarginContainer"]
+layout_mode = 2
+
+[node name="MainUiButton" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Menu"
+
+[node name="OtherMineButton1" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 1"
+
+[node name="OtherMineButton2" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 2"
+
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/GridContainerResources/LineEditStone" to="." method="_on_line_edit_stone_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/GridContainerResources/LineEditCoal" to="." method="_on_line_edit_coal_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/GridContainerResources/LineEditRawCopper" to="." method="_on_line_edit_raw_copper_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/GridContainerResources/LineEditRawIron" to="." method="_on_line_edit_raw_iron_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/GridContainerResources/LineEditCopperMatte" to="." method="_on_line_edit_copper_matte_text_submitted"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/GridContainerResources/LineEditPigIron" to="." method="_on_line_edit_pig_iron_text_changed"]
+[connection signal="button_down" from="OtherPlaces2/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]
