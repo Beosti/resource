@@ -13,15 +13,16 @@ extends Control
 var amountCoalInFurnace: int;
 var typeOreInFurnace: String;
 var amountOreInFurnace: int;
-var amountPureOre: int;
 
 signal smelt_ore_signal(typeOre: String);
 
+# Displays of text
 func _process(delta: float) -> void:
 	waitTimerLabel.text = "%.1f" %timer.get_time_left();
 	amountCoalInFurnaceText.text = "%s" %amountCoalInFurnace;
 	amountRawOreInFurnaceText.text = "%s" %amountOreInFurnace;
 
+# Submitting of coal, goes through a few checks and then changes the gamedata
 func _on_amount_coal_text_submitted(new_text: String) -> void:
 	if (!new_text.is_valid_int()):
 		return;
@@ -36,6 +37,7 @@ func _on_amount_coal_text_submitted(new_text: String) -> void:
 	if (amountOreInFurnace > 0 && amountCoalInFurnace > 0):
 		timer.start();
 
+# Submitting of unprocessed ore, goes through a few checks and then changes the amounts
 func _on_amount_ore_text_submitted(new_text: String) -> void:
 	if (!new_text.is_valid_int()):
 		return;
@@ -55,6 +57,7 @@ func _on_amount_ore_text_submitted(new_text: String) -> void:
 	if (amountOreInFurnace > 0 && amountCoalInFurnace > 0):
 		timer.start();
 
+# When ore is cooked does some additions etc.
 func _on_timer_timeout() -> void:
 	if (typeOreInFurnace == GameData.RAW_COPPER_RESOURCE):
 		GameData.add_amount(GameData.COPPER_MATTE_ID, 1);
@@ -62,7 +65,6 @@ func _on_timer_timeout() -> void:
 	if (typeOreInFurnace == GameData.RAW_IRON_RESOURCE):
 		GameData.add_amount(GameData.PIG_IRON_ID, 1);
 		smelt_ore_signal.emit(GameData.PIG_IRON_ID);
-	amountPureOre += 1;
 	amountCoalInFurnace -= 1;
 	amountOreInFurnace -= 1;
 	if (amountCoalInFurnace == 0):

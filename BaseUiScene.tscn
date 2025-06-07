@@ -189,6 +189,7 @@ text = "Furnace"
 script = ExtResource("8_bm5li")
 
 [node name="FurnaceScreen" parent="." instance=ExtResource("13_d1j76")]
+visible = false
 layout_mode = 1
 offset_left = 3.0
 
