@@ -22,11 +22,11 @@ func _ready():
 	update_digger_button_text();
 
 func _on_button_digger_button_down() -> void:
-	if GameData.get_amount(resourceID) < costDiggers:
+	if GameData.get_zerre_amount() < costDiggers:
 		return;
 	if (diggers == 0):
 		diggerTimer.start();
-	dig_resource(-costDiggers);
+	GameData.add_zerre_amount(-costDiggers);
 	increase_digger(1);
 	increase_digger_amount(5 * diggers);
 
