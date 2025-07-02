@@ -5,3 +5,9 @@
 
 [node name="RawCopperScene" instance=ExtResource("1_xfk87")]
 script = ExtResource("2_jtuej")
+
+[node name="DiggerTimer" parent="." index="3"]
+wait_time = 5.0
+
+[node name="ButtonDigger" parent="Upgrades/MarginContainer/GridContainer" index="0"]
+text = "Acquire digger: 10 zerre"

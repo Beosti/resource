@@ -38,14 +38,25 @@ grow_vertical = 2
 text = "Dig"
 
 [node name="ValueDigger" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 802.0
-offset_top = -4.0
-offset_right = 878.0
-offset_bottom = 23.0
+offset_left = 648.0
+offset_top = 5.0
+offset_right = 724.0
+offset_bottom = 32.0
 text = "Diggers: 0"
 
+[node name="ValueDiggerspeed" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 648.0
+offset_top = 34.0
+offset_right = 736.0
+offset_bottom = 57.0
+text = "Speed: "
+
 [node name="DiggerTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="Upgrades" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -66,6 +77,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Acquire digger: 10 resource"
+
+[node name="Button" type="Button" parent="Upgrades/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Speed digger increase: 10 "
 
 [node name="OtherPlaces" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -102,6 +117,7 @@ text = "Other Mine 2"
 [connection signal="button_down" from="ButtonDig" to="." method="_on_button_dig_button_down"]
 [connection signal="timeout" from="DiggerTimer" to="." method="_on_digger_timer_timeout"]
 [connection signal="button_down" from="Upgrades/MarginContainer/GridContainer/ButtonDigger" to="." method="_on_button_digger_button_down"]
+[connection signal="button_down" from="Upgrades/MarginContainer/GridContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="OtherPlaces/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]
 [connection signal="button_down" from="OtherPlaces/MarginContainer/GridContainer/OtherMineButton1" to="." method="_on_other_mine_button_1_button_down"]
 [connection signal="button_down" from="OtherPlaces/MarginContainer/GridContainer/OtherMineButton2" to="." method="_on_other_mine_button_2_button_down"]
