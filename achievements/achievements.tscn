@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnkohmvvrg6sv"]
+
+[ext_resource type="Script" path="res://achievements/achievements_script.gd" id="1_i02i8"]
+[ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_tkosy"]
+[ext_resource type="Resource" uid="uid://1g03w4bmxm62" path="res://achievements/achievements/MiningStone.tres" id="2_ck3v4"]
+[ext_resource type="Resource" uid="uid://xpypwb1r3fp0" path="res://achievements/achievements/Mining10Stones.tres" id="3_smcin"]
+[ext_resource type="Resource" uid="uid://bbs7evijtye56" path="res://achievements/achievements/Digger.tres" id="4_k1hj3"]
+[ext_resource type="Script" path="res://achievements/camera_2d.gd" id="6_gjiuk"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i02i8")
+firstAchievementContainer = NodePath("FirstAchievementPanel")
+firstAchievementTextureButton = NodePath("FirstAchievementPanel/FirstAchievementButton")
+firstAchievement = ExtResource("2_ck3v4")
+secondAchievementContainer = NodePath("SecondAchievementPanel")
+secondAchievementTextureButton = NodePath("SecondAchievementPanel/SecondAchievementButton")
+secondAchievement = ExtResource("3_smcin")
+thirdAchievementContainer = NodePath("ThirdAchievementPanel")
+thirdAchievementTextureButton = NodePath("ThirdAchievementPanel/ThirdAchievementButton")
+thirdAchievement = ExtResource("4_k1hj3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 322)
+script = ExtResource("6_gjiuk")
+
+[node name="FirstAchievementPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 567.0
+offset_top = 298.0
+offset_right = 607.0
+offset_bottom = 338.0
+tooltip_text = "test"
+
+[node name="FirstAchievementButton" type="TextureButton" parent="FirstAchievementPanel"]
+layout_mode = 2
+texture_normal = ExtResource("1_tkosy")
+stretch_mode = 0
+
+[node name="SecondAchievementPanel" type="PanelContainer" parent="."]
+offset_left = 761.0
+offset_top = 297.0
+offset_right = 801.0
+offset_bottom = 337.0
+
+[node name="SecondAchievementButton" type="TextureButton" parent="SecondAchievementPanel"]
+layout_mode = 2
+tooltip_text = "test"
+texture_normal = ExtResource("1_tkosy")
+stretch_mode = 0
+
+[node name="ThirdAchievementPanel" type="PanelContainer" parent="."]
+offset_left = 888.0
+offset_top = 294.0
+offset_right = 928.0
+offset_bottom = 334.0
+
+[node name="ThirdAchievementButton" type="TextureButton" parent="ThirdAchievementPanel"]
+layout_mode = 2
+texture_normal = ExtResource("1_tkosy")
+stretch_mode = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://xpypwb1r3fp0"]
+
+[ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_oeqpl"]
+[ext_resource type="Script" path="res://achievements/abstract/AchievementDataClass.gd" id="1_ymhnj"]
+
+[resource]
+script = ExtResource("1_ymhnj")
+title = "Mining 10 Stones"
+ID = "mining_10_stones"
+flavorText = "Getting the hang of it"
+description = "You get this by digging 10 stones."
+state = 2
+icon = ExtResource("1_oeqpl")

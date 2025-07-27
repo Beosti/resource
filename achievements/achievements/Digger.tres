@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://bbs7evijtye56"]
+
+[ext_resource type="Script" path="res://achievements/abstract/AchievementDataClass.gd" id="1_4uprx"]
+[ext_resource type="Texture2D" uid="uid://eus5dihyklgy" path="res://textures/zerre_resource.png" id="1_msfcb"]
+
+[resource]
+script = ExtResource("1_4uprx")
+title = "First Digger"
+ID = "first_digger"
+flavorText = "Can I do something else now?"
+description = "You get this by buying your first digger."
+state = 2
+icon = ExtResource("1_msfcb")
