@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbksm33ruhkyo"]
+[gd_scene load_steps=17 format=3 uid="uid://cbksm33ruhkyo"]
 
 [ext_resource type="Script" path="res://main/BaseUiScene.gd" id="1_2sfg5"]
 [ext_resource type="PackedScene" uid="uid://c2r0cwflbfwf6" path="res://mines/stonemine/StoneClickerScene.tscn" id="2_e76hg"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b68phbdv380yr" path="res://textures/pig_iron_resource.png" id="11_aifsg"]
 [ext_resource type="PackedScene" uid="uid://djdss5k68xxkq" path="res://furnace/FurnaceScreen.tscn" id="13_d1j76"]
 [ext_resource type="PackedScene" uid="uid://cvhj3u60j2qh8" path="res://merchant/MerchantScene.tscn" id="15_v5x0y"]
+[ext_resource type="PackedScene" uid="uid://cnkohmvvrg6sv" path="res://achievements/AchievementScreen.tscn" id="16_lc1m6"]
 
 [node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "rawIronMineButton", "furnaceButton", "merchantButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene", "rawIronClickerScene", "furnaceScene", "stoneResourceLabel", "coalResourceLabel", "rawCopperResourceLabel", "rawIronResourceLabel", "copperMatteResourceLabel", "pigIronResourceLabel", "zerreLabel")]
 layout_mode = 3
@@ -204,6 +205,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Merchant"
 
+[node name="Button" type="Button" parent="ContainerMines/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Achievements"
+
 [node name="ResourceDataClass" type="Node" parent="."]
 script = ExtResource("8_bm5li")
 
@@ -216,9 +221,15 @@ offset_left = 3.0
 visible = false
 layout_mode = 1
 
+[node name="AchievementScreen" parent="." instance=ExtResource("16_lc1m6")]
+visible = false
+layout_mode = 1
+
+[connection signal="achievement_updated" from="Mines/StoneClickerScene" to="AchievementScreen" method="_on_stone_clicker_scene_achievement_updated"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/StoneMineButton" to="." method="_on_stone_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/CopperMineButton" to="." method="_on_copper_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/CoalMineButton" to="." method="_on_coal_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/RawIronMineButton" to="." method="_on_raw_iron_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/FurnaceButton" to="." method="_on_furnace_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/MerchantButton" to="." method="_on_merchant_button_button_down"]
+[connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/Button" to="." method="_on_button_button_down"]

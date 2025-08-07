@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://1g03w4bmxm62"]
 
-[ext_resource type="Script" path="res://achievements/abstract/AchievementDataClass.gd" id="1_cvwh2"]
 [ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_r1i2t"]
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="2_i5fro"]
 
 [resource]
-script = ExtResource("1_cvwh2")
+script = ExtResource("2_i5fro")
 title = "Mining Stone"
 ID = "mining_stone"
 flavorText = "Damn... This is kinda boring."

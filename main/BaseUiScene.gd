@@ -14,6 +14,7 @@ extends Control
 @export var rawIronClickerScene: RawIronClickerClass;
 @export var furnaceScene: Control;
 @onready var merchantScene = $MerchantScene;
+@onready var achievementScene = $AchievementScreen;
 
 @export var stoneResourceLabel: Label;
 @export var coalResourceLabel: Label;
@@ -46,6 +47,7 @@ func _ready():
 	rawIronClickerScene.connect("main_menu_reset", main_menu);
 	furnaceScene.connect("main_menu_reset", main_menu);
 	merchantScene.connect("main_menu_reset", main_menu);
+	achievementScene.connect("main_menu_reset", main_menu);
 
 	stoneClickerScene.hide();
 	copperClickerScene.hide();
@@ -53,6 +55,7 @@ func _ready():
 	rawIronClickerScene.hide();
 	furnaceScene.hide();
 	merchantScene.hide();
+	achievementScene.hide();
 	
 	stoneMineButton.show();
 	copperMineButton.show();
@@ -60,6 +63,7 @@ func _ready():
 	rawIronMineButton.show();
 	furnaceButton.show();
 	merchantButton.show();
+	
 
 func main_menu():
 	get_node("Mines/StoneClickerScene").hide();
@@ -69,7 +73,7 @@ func main_menu():
 	get_node("FurnaceScreen").hide();
 	get_node("MerchantScene").hide();
 	get_node("ContainerMines").show();
-	
+	get_node("AchievementScreen").hide();
 
 func _on_stone_mine_button_button_down() -> void:
 	get_node("Mines/StoneClickerScene").show();
@@ -88,6 +92,9 @@ func _on_furnace_button_button_down() -> void:
 	hide_buttons();
 func _on_merchant_button_button_down() -> void:
 	get_node("MerchantScene").show();
+	hide_buttons();
+func _on_button_button_down() -> void:
+	get_node("AchievementScreen").show();
 	hide_buttons();
 func hide_buttons():
 	get_node("ContainerMines").hide();

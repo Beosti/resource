@@ -18,6 +18,7 @@ var resourceName : String = "resource";
 var resourceID : String = "id";
 signal main_menu_reset;
 signal dig_resource_signal;
+signal achievement_updated
 
 func _ready():
 	self.connect("dig_resource_signal", update_resource_label_text);

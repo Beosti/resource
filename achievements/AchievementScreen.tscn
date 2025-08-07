@@ -1,13 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnkohmvvrg6sv"]
+[gd_scene load_steps=5 format=3 uid="uid://cnkohmvvrg6sv"]
 
 [ext_resource type="Script" path="res://achievements/achievements_script.gd" id="1_i02i8"]
 [ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_tkosy"]
-[ext_resource type="Resource" uid="uid://1g03w4bmxm62" path="res://achievements/achievements/MiningStone.tres" id="2_ck3v4"]
-[ext_resource type="Resource" uid="uid://xpypwb1r3fp0" path="res://achievements/achievements/Mining10Stones.tres" id="3_smcin"]
 [ext_resource type="Resource" uid="uid://bbs7evijtye56" path="res://achievements/achievements/Digger.tres" id="4_k1hj3"]
 [ext_resource type="Script" path="res://achievements/camera_2d.gd" id="6_gjiuk"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton")]
+[node name="AchievementScreen" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,16 +15,21 @@ grow_vertical = 2
 script = ExtResource("1_i02i8")
 firstAchievementContainer = NodePath("FirstAchievementPanel")
 firstAchievementTextureButton = NodePath("FirstAchievementPanel/FirstAchievementButton")
-firstAchievement = ExtResource("2_ck3v4")
 secondAchievementContainer = NodePath("SecondAchievementPanel")
 secondAchievementTextureButton = NodePath("SecondAchievementPanel/SecondAchievementButton")
-secondAchievement = ExtResource("3_smcin")
 thirdAchievementContainer = NodePath("ThirdAchievementPanel")
 thirdAchievementTextureButton = NodePath("ThirdAchievementPanel/ThirdAchievementButton")
 thirdAchievement = ExtResource("4_k1hj3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(578, 322)
+position = Vector2(578, 331)
+offset = Vector2(-578, -331)
+anchor_mode = 0
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 2000
+limit_bottom = 1200
 script = ExtResource("6_gjiuk")
 
 [node name="FirstAchievementPanel" type="PanelContainer" parent="."]
@@ -43,6 +46,7 @@ texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
 
 [node name="SecondAchievementPanel" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 761.0
 offset_top = 297.0
 offset_right = 801.0
@@ -55,6 +59,7 @@ texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
 
 [node name="ThirdAchievementPanel" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 888.0
 offset_top = 294.0
 offset_right = 928.0
@@ -64,3 +69,37 @@ offset_bottom = 334.0
 layout_mode = 2
 texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
+
+[node name="OtherPlaces2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -301.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherPlaces2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="OtherPlaces2/MarginContainer"]
+layout_mode = 2
+
+[node name="MainUiButton" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Menu"
+
+[node name="OtherMineButton1" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 1"
+
+[node name="OtherMineButton2" type="Button" parent="OtherPlaces2/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Other Mine 2"
+
+[connection signal="button_down" from="OtherPlaces2/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]

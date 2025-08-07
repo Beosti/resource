@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://xpypwb1r3fp0"]
 
 [ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_oeqpl"]
-[ext_resource type="Script" path="res://achievements/abstract/AchievementDataClass.gd" id="1_ymhnj"]
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="1_ymhnj"]
 
 [resource]
 script = ExtResource("1_ymhnj")
