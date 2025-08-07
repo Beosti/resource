@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnkohmvvrg6sv"]
+[gd_scene load_steps=4 format=3 uid="uid://cnkohmvvrg6sv"]
 
 [ext_resource type="Script" path="res://achievements/achievements_script.gd" id="1_i02i8"]
 [ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_tkosy"]
-[ext_resource type="Resource" uid="uid://bbs7evijtye56" path="res://achievements/achievements/Digger.tres" id="4_k1hj3"]
 [ext_resource type="Script" path="res://achievements/camera_2d.gd" id="6_gjiuk"]
 
 [node name="AchievementScreen" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton")]
@@ -19,7 +18,6 @@ secondAchievementContainer = NodePath("SecondAchievementPanel")
 secondAchievementTextureButton = NodePath("SecondAchievementPanel/SecondAchievementButton")
 thirdAchievementContainer = NodePath("ThirdAchievementPanel")
 thirdAchievementTextureButton = NodePath("ThirdAchievementPanel/ThirdAchievementButton")
-thirdAchievement = ExtResource("4_k1hj3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(578, 331)

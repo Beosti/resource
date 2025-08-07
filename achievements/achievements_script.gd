@@ -8,13 +8,6 @@ extends Control
 
 @export var thirdAchievementContainer: PanelContainer;
 @export var thirdAchievementTextureButton: TextureButton;
-@export var thirdAchievement: Achievement;
-
-# Array for achievements
-# Go through array check if achievement is done or not
-# If it is not discovered at all then it is hidden
-# if it is discovered then it can stay and tooltip changes
-# if it is done then it has another color and tooltip changes
 
 signal main_menu_reset;
 
@@ -34,7 +27,7 @@ func _ready() -> void:
 			"container": secondAchievementContainer
 		},
 		{
-			"achievement": thirdAchievement,
+			"achievement": AchievementData.digger,
 			"button": thirdAchievementTextureButton,
 			"container": thirdAchievementContainer
 		}
@@ -43,8 +36,9 @@ func _ready() -> void:
 	if AchievementData.mining_stone.state == Achievement.State.DONE and AchievementData.mining_stones.state != Achievement.State.DONE:
 		AchievementData.mining_stones.state = Achievement.State.DISCOVERED
 		secondAchievementContainer.show();
-	if AchievementData.mining_stones.state == Achievement.State.DONE and thirdAchievement.state != Achievement.State.DONE:
-		thirdAchievement.state = Achievement.State.DISCOVERED
+	if AchievementData.mining_stones.state == Achievement.State.DONE and AchievementData.digger.state != Achievement.State.DONE:
+		AchievementData.digger.state = Achievement.State.DISCOVERED
+		thirdAchievementContainer.show();
 	# Hide second if first is not DISCOVERED yet
 	if AchievementData.mining_stone.state == Achievement.State.DISCOVERED:
 		secondAchievementContainer.hide()

@@ -8,6 +8,11 @@ func _ready():
 
 func dig_resource(amount: int):
 	super(amount);
+	# Achievement "Mining Stone" -> Dig your first stone
 	if (AchievementData.mining_stone.state != Achievement.State.DONE):
 		AchievementData.mining_stone.state = Achievement.State.DONE;
-		emit_signal("achievement_updated")
+		emit_signal("achievement_updated");
+	# Achievement "Mining Stones" -> Dig your first ten stones
+	if (GameData.stoneAmount == 10 && AchievementData.mining_stones.state != Achievement.State.DONE):
+		AchievementData.mining_stones.state = Achievement.State.DONE;
+		emit_signal("achievement_updated");

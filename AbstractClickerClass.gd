@@ -33,6 +33,8 @@ func _on_button_digger_button_down() -> void:
 		return;
 	if (diggers == 0):
 		diggerTimer.start();
+		AchievementData.digger.state = Achievement.State.DONE;
+		emit_signal("achievement_updated");
 	GameData.add_zerre_amount(-costDiggers);
 	increase_digger(1);
 	increase_digger_amount(5 * diggers);
