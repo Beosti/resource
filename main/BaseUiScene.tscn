@@ -233,9 +233,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -101.0
+offset_left = -171.0
 offset_top = -239.0
-offset_right = 99.0
+offset_right = 169.0
 offset_bottom = -189.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -243,7 +243,9 @@ script = ExtResource("17_7l3xa")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AchievementPop"]
 layout_mode = 2
+bbcode_enabled = true
 text = "('y('y"
+fit_content = true
 scroll_active = false
 context_menu_enabled = true
 
