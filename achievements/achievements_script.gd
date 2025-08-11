@@ -9,7 +9,10 @@ extends Control
 @export var thirdAchievementContainer: PanelContainer;
 @export var thirdAchievementTextureButton: TextureButton;
 
+@onready var timer = $Timer;
+
 signal main_menu_reset;
+signal achievement_gui_pop(achievement);
 
 func _on_main_ui_button_button_down() -> void:
 	emit_signal("main_menu_reset");
@@ -72,6 +75,23 @@ func _process_achievement(entry: Dictionary) -> void:
 			container.add_theme_stylebox_override("panel", stylebox)
 
 
-func _on_stone_clicker_scene_achievement_updated() -> void:
+func _on_stone_clicker_scene_achievement_updated(achievement) -> void:
 	_ready();
+	show_popping_achievement(achievement);
+	pass # Replace with function body.
+
+func show_popping_achievement(achievement) -> void:
+	print("showing achievement");
+	emit_signal("achievement_gui_pop", achievement);
+	timer.start();
+	pass;
+
+func hide_popping_achievement() -> void:
+	print("hiding achievement")
+	emit_signal("achievement_gui_pop", null);
+	pass;
+
+func _on_timer_timeout() -> void:
+	hide_popping_achievement();
+	timer.stop();
 	pass # Replace with function body.

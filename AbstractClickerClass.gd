@@ -18,7 +18,7 @@ var resourceName : String = "resource";
 var resourceID : String = "id";
 signal main_menu_reset;
 signal dig_resource_signal;
-signal achievement_updated
+signal achievement_updated(achievement);
 
 func _ready():
 	self.connect("dig_resource_signal", update_resource_label_text);
@@ -34,7 +34,7 @@ func _on_button_digger_button_down() -> void:
 	if (diggers == 0):
 		diggerTimer.start();
 		AchievementData.digger.state = Achievement.State.DONE;
-		emit_signal("achievement_updated");
+		emit_signal("achievement_updated", AchievementData.digger);
 	GameData.add_zerre_amount(-costDiggers);
 	increase_digger(1);
 	increase_digger_amount(5 * diggers);

@@ -100,4 +100,8 @@ text = "Other Mine 1"
 layout_mode = 2
 text = "Other Mine 2"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.402
+
 [connection signal="button_down" from="OtherPlaces2/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
