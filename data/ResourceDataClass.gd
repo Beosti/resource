@@ -6,6 +6,7 @@ const STONE_RESOURCE = "Stone";
 const STONE_ID = "stone";
 const STONE_VALUE = 1;
 var stoneAmount = 0;
+var stoneMined = 0;
 const RAW_COPPER_RESOURCE = "Raw Copper";
 const RAW_COPPER_ID = "raw_copper";
 const RAW_COPPER_VALUE = 3;

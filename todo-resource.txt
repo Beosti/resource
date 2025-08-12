@@ -1,0 +1,4 @@
+[X] sell button next to the resources
+[ ] locking next steps
+[ ] hiding resources until you have them
+[ ] add more achievement

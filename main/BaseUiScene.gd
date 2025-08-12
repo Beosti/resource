@@ -16,6 +16,14 @@ extends Control
 @onready var merchantScene = $MerchantScene;
 @onready var achievementScene = $AchievementScreen;
 
+@onready var sellButtonStone = $ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonStone;
+@onready var sellButtonCoal = $ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonCoal;
+@onready var sellButtonRawCopper = $ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonRawCopper;
+@onready var sellButtonRawIron = $ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonRawIron;
+@onready var sellButtonCopperMatte = $ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonCopperMatte;
+@onready var sellButtonPigIron = $ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonPigIron;
+
+
 @export var stoneResourceLabel: Label;
 @export var coalResourceLabel: Label;
 @export var rawCopperResourceLabel: Label;
@@ -28,6 +36,8 @@ extends Control
 
 
 func _process(delta: float) -> void:
+	#sellButtonStone.mouse_filter = MOUSE_FILTER_PASS;
+	#print(sellButtonStone.mouse_filter);
 	stoneResourceLabel.text = "Stone: %s" %GameData.stoneAmount;
 	stoneResourceLabel.tooltip_text = "Generating %s stone per second" % stoneClickerScene.diggers;
 	coalResourceLabel.text = "Coal: %s" %GameData.coalAmount;
@@ -100,3 +110,34 @@ func hide_buttons():
 	get_node("ContainerMines").hide();
 func show_buttons():
 	get_node("ContainerMines").show();
+
+
+func _on_sell_button_stone_button_down() -> void:
+	GameData.add_zerre_amount(GameData.STONE_VALUE * GameData.stoneAmount);
+	GameData.add_amount(GameData.STONE_ID, -GameData.stoneAmount);
+	pass # Replace with function body.
+
+func _on_sell_button_coal_button_down() -> void:
+	GameData.add_zerre_amount(GameData.COAL_VALUE * GameData.coalAmount);
+	GameData.add_amount(GameData.COAL_ID, -GameData.coalAmount);
+	pass # Replace with function body.
+
+func _on_sell_button_raw_copper_button_down() -> void:
+	GameData.add_zerre_amount(GameData.RAW_COPPER_VALUE * GameData.rawCopperAmount);
+	GameData.add_amount(GameData.RAW_COPPER_ID, -GameData.rawCopperAmount);
+	pass # Replace with function body.
+
+func _on_sell_button_raw_iron_button_down() -> void:
+	GameData.add_zerre_amount(GameData.RAW_IRON_VALUE * GameData.rawIronAmount);
+	GameData.add_amount(GameData.RAW_IRON_ID, -GameData.rawIronAmount);
+	pass # Replace with function body.
+
+func _on_sell_button_copper_matte_button_down() -> void:
+	GameData.add_zerre_amount(GameData.COPPER_MATTE_VALUE * GameData.copperMatteAmount);
+	GameData.add_amount(GameData.COPPER_MATTE_ID, -GameData.copperMatteAmount);
+	pass # Replace with function body.
+
+func _on_sell_button_pig_iron_button_down() -> void:
+	GameData.add_zerre_amount(GameData.PIG_IRON_VALUE * GameData.pigIronAmount);
+	GameData.add_amount(GameData.PIG_IRON_ID, -GameData.pigIronAmount);
+	pass # Replace with function body.

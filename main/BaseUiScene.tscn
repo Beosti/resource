@@ -25,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_2sfg5")
 stoneMineButton = NodePath("ContainerMines/MarginContainer/GridContainer/StoneMineButton")
 copperMineButton = NodePath("ContainerMines/MarginContainer/GridContainer/CopperMineButton")
@@ -37,13 +38,13 @@ copperClickerScene = NodePath("Mines/RawCopperClickerScene")
 coalClickerScene = NodePath("Mines/CoalClickerScene")
 rawIronClickerScene = NodePath("Mines/RawIronClickerScene")
 furnaceScene = NodePath("FurnaceScreen")
-stoneResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/StoneResourceLabel")
-coalResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/CoalResourceLabel")
-rawCopperResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/RawCopperResourceLabel")
-rawIronResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/RawIronResourceLabel")
-copperMatteResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/CopperMatteResource")
-pigIronResourceLabel = NodePath("ContainerResources/MarginContainer/GridContainer/PigIronResource")
-zerreLabel = NodePath("ContainerResources/MarginContainer/GridContainer/ZerreAmount")
+stoneResourceLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainer/StoneResourceLabel")
+coalResourceLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainer/CoalResourceLabel")
+rawCopperResourceLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainer/RawCopperResourceLabel")
+rawIronResourceLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainer/RawIronResourceLabel")
+copperMatteResourceLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainer/CopperMatteResource")
+pigIronResourceLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainer/PigIronResource")
+zerreLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridContainerZerre/ZerreAmount")
 
 [node name="Mines" type="Node" parent="."]
 
@@ -73,80 +74,113 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="GridContainer" type="GridContainer" parent="ContainerResources/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerResources/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainerZerre" type="GridContainer" parent="ContainerResources/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="ZerreTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="ZerreTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainerZerre"]
 layout_mode = 2
 texture = ExtResource("6_ra6q4")
+expand_mode = 2
 
-[node name="ZerreAmount" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="ZerreAmount" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainerZerre"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Zerre: 0"
 
-[node name="StoneTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="GridContainer" type="GridContainer" parent="ContainerResources/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="StoneTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 tooltip_text = "Basic resource, not really used for much. Can be sold though!"
 texture = ExtResource("5_t6ims")
 expand_mode = 2
 
-[node name="StoneResourceLabel" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="StoneResourceLabel" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 22
 text = "Stone: 0"
 
-[node name="CoalTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="SellButtonStone" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "SELL"
+
+[node name="CoalTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 tooltip_text = "Coal is a resource you gather to smelt as fuel or as ingredient to create even better resources!"
 texture = ExtResource("6_ppter")
 
-[node name="CoalResourceLabel" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="CoalResourceLabel" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 22
 text = "Coal: 0"
 
-[node name="RawCopperTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="SellButtonCoal" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SELL"
+
+[node name="RawCopperTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 tooltip_text = "The basic ingredient for tons of other stuff! "
 texture = ExtResource("7_h5um4")
 
-[node name="RawCopperResourceLabel" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="RawCopperResourceLabel" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 22
 text = "Raw copper: 0"
 
-[node name="RawIronTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="SellButtonRawCopper" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SELL"
+
+[node name="RawIronTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("9_7vyqw")
 
-[node name="RawIronResourceLabel" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="RawIronResourceLabel" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 22
 text = "Coal: 0"
 
-[node name="CopperMatteTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="SellButtonRawIron" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SELL"
+
+[node name="CopperMatteTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("10_rltgu")
 
-[node name="CopperMatteResource" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="CopperMatteResource" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Copper Matte: 0"
 
-[node name="PigIronTexture" type="TextureRect" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="SellButtonCopperMatte" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SELL"
+
+[node name="PigIronTexture" type="TextureRect" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("11_aifsg")
 
-[node name="PigIronResource" type="Label" parent="ContainerResources/MarginContainer/GridContainer"]
+[node name="PigIronResource" type="Label" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Pig Iron: 0"
+
+[node name="SellButtonPigIron" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SELL"
 
 [node name="ContainerMines" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -227,6 +261,7 @@ visible = false
 layout_mode = 1
 
 [node name="AchievementPop" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -244,12 +279,17 @@ script = ExtResource("17_7l3xa")
 [node name="RichTextLabel" type="RichTextLabel" parent="AchievementPop"]
 layout_mode = 2
 bbcode_enabled = true
-text = "('y('y"
 fit_content = true
 scroll_active = false
 context_menu_enabled = true
 
 [connection signal="achievement_updated" from="Mines/StoneClickerScene" to="AchievementScreen" method="_on_stone_clicker_scene_achievement_updated"]
+[connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonStone" to="." method="_on_sell_button_stone_button_down"]
+[connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonCoal" to="." method="_on_sell_button_coal_button_down"]
+[connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonRawCopper" to="." method="_on_sell_button_raw_copper_button_down"]
+[connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonRawIron" to="." method="_on_sell_button_raw_iron_button_down"]
+[connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonCopperMatte" to="." method="_on_sell_button_copper_matte_button_down"]
+[connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonPigIron" to="." method="_on_sell_button_pig_iron_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/StoneMineButton" to="." method="_on_stone_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/CopperMineButton" to="." method="_on_copper_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/CoalMineButton" to="." method="_on_coal_mine_button_button_down"]
