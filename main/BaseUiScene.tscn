@@ -150,7 +150,7 @@ texture = ExtResource("9_7vyqw")
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 22
-text = "Coal: 0"
+text = "Raw Iron: 0"
 
 [node name="SellButtonRawIron" type="Button" parent="ContainerResources/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -201,7 +201,6 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="ContainerMines/MarginContainer"]
 layout_mode = 2
-columns = 3
 
 [node name="StoneMineButton" type="Button" parent="ContainerMines/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -240,7 +239,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Merchant"
 
-[node name="Button" type="Button" parent="ContainerMines/MarginContainer/GridContainer"]
+[node name="AchievementButton" type="Button" parent="ContainerMines/MarginContainer/GridContainer"]
 layout_mode = 2
 text = "Achievements"
 
@@ -284,6 +283,8 @@ scroll_active = false
 context_menu_enabled = true
 
 [connection signal="achievement_updated" from="Mines/StoneClickerScene" to="AchievementScreen" method="_on_stone_clicker_scene_achievement_updated"]
+[connection signal="update_unlocks" from="Mines/StoneClickerScene" to="." method="_on_stone_clicker_scene_update_unlocks"]
+[connection signal="update_unlocks" from="Mines/StoneClickerScene" to="Mines/StoneClickerScene" method="_on_update_unlocks"]
 [connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonStone" to="." method="_on_sell_button_stone_button_down"]
 [connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonCoal" to="." method="_on_sell_button_coal_button_down"]
 [connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonRawCopper" to="." method="_on_sell_button_raw_copper_button_down"]
@@ -296,5 +297,5 @@ context_menu_enabled = true
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/RawIronMineButton" to="." method="_on_raw_iron_mine_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/FurnaceButton" to="." method="_on_furnace_button_button_down"]
 [connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/MerchantButton" to="." method="_on_merchant_button_button_down"]
-[connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="ContainerMines/MarginContainer/GridContainer/AchievementButton" to="." method="_on_button_button_down"]
 [connection signal="achievement_gui_pop" from="AchievementScreen" to="AchievementPop" method="_on_achievement_screen_achievement_gui_pop"]

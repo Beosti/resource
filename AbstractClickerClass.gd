@@ -21,6 +21,9 @@ signal dig_resource_signal;
 signal achievement_updated(achievement);
 
 func _ready():
+	buttonDigger.hide();
+	labelDigger.hide();
+	buttonTimer.hide();
 	self.connect("dig_resource_signal", update_resource_label_text);
 	labelResource.text = "%s: 0" %resourceName;
 	update_resource_label_text();

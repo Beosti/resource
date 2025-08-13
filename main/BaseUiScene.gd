@@ -7,6 +7,7 @@ extends Control
 @export var rawIronMineButton: Button;
 @export var furnaceButton: Button;
 @export var merchantButton: Button;
+@onready var achievementButton = $ContainerMines/MarginContainer/GridContainer/AchievementButton;
 
 @export var stoneClickerScene: StoneClickerClass;
 @export var copperClickerScene: RawCopperClickerclass;
@@ -33,7 +34,6 @@ extends Control
 @export var zerreLabel: Label;
 
 @onready var mineContainer = $Mines;
-
 
 func _process(delta: float) -> void:
 	#sellButtonStone.mouse_filter = MOUSE_FILTER_PASS;
@@ -67,13 +67,43 @@ func _ready():
 	merchantScene.hide();
 	achievementScene.hide();
 	
-	stoneMineButton.show();
-	copperMineButton.show();
-	coalMineButton.show();
-	rawIronMineButton.show();
-	furnaceButton.show();
-	merchantButton.show();
+	sellButtonStone.hide();
+	sellButtonCoal.hide();
+	sellButtonRawCopper.hide();
+	sellButtonRawIron.hide();
+	sellButtonCopperMatte.hide();
+	sellButtonPigIron.hide();
 	
+	show_buttons_unlock();
+
+func show_sell_buttons_unlock() -> void:
+	if ProgressionData.unlockedDigger:
+		sellButtonStone.show();
+
+func show_buttons_unlock() -> void:
+	stoneMineButton.show();
+	if ProgressionData.unlockedAchievements:
+		print("unlocked achievements")
+		achievementButton.show();
+	else:
+		achievementButton.hide();
+	if ProgressionData.unlockedCopper:
+		copperMineButton.show();
+	else:
+		copperMineButton.hide();
+	if ProgressionData.unlockedCoal:
+		coalMineButton.show();
+	else:
+		coalMineButton.hide();
+	rawIronMineButton.hide();
+	if ProgressionData.unlockedMerchant:
+		furnaceButton.show();
+	else:
+		furnaceButton.hide();
+	if ProgressionData.unlockedMerchant:
+		merchantButton.show();
+	else:
+		merchantButton.hide();
 
 func main_menu():
 	get_node("Mines/StoneClickerScene").hide();
@@ -140,4 +170,9 @@ func _on_sell_button_copper_matte_button_down() -> void:
 func _on_sell_button_pig_iron_button_down() -> void:
 	GameData.add_zerre_amount(GameData.PIG_IRON_VALUE * GameData.pigIronAmount);
 	GameData.add_amount(GameData.PIG_IRON_ID, -GameData.pigIronAmount);
+	pass # Replace with function body.
+
+
+func _on_stone_clicker_scene_update_unlocks() -> void:
+	show_buttons_unlock();
 	pass # Replace with function body.
