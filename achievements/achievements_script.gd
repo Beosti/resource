@@ -12,6 +12,9 @@ extends Control
 @export var fourthAchievementContainer: PanelContainer;
 @export var fourthAchievementTextureButton: TextureButton;
 
+@export var fifthAchievementContainer: PanelContainer;
+@export var fifthAchievementTextureButton: TextureButton;
+
 @onready var timer = $Timer;
 
 signal main_menu_reset;
@@ -41,6 +44,11 @@ func _ready() -> void:
 			"achievement": AchievementData.digger,
 			"button": fourthAchievementTextureButton,
 			"container": fourthAchievementContainer
+		},
+		{
+			"achievement": AchievementData.mining_coal,
+			"button": fifthAchievementTextureButton,
+			"container": fifthAchievementContainer,
 		}
 	]
 	# Unlock second achievement if first is DONE
@@ -53,6 +61,9 @@ func _ready() -> void:
 	if AchievementData.first_to_riches.state == Achievement.State.DONE and AchievementData.digger.state != Achievement.State.DONE:
 		AchievementData.digger.state = Achievement.State.DISCOVERED;
 		fourthAchievementContainer.show();
+	if AchievementData.digger.state == Achievement.State.DONE and AchievementData.mining_coal.state != Achievement.State.DONE:
+		AchievementData.mining_coal.state = Achievement.State.DISCOVERED;
+		fifthAchievementContainer.show();
 	# Hide second if first is not DISCOVERED yet
 	if AchievementData.mining_stone.state != Achievement.State.DONE:
 		secondAchievementContainer.hide()
@@ -60,6 +71,8 @@ func _ready() -> void:
 		thirdAchievementContainer.hide(); 
 	if AchievementData.first_to_riches.state != Achievement.State.DONE:
 		fourthAchievementContainer.hide()
+	if AchievementData.digger.state != Achievement.State.DONE:
+		fifthAchievementContainer.hide();
 	# do something when receiving a signal
 	for i in achievements.size():
 		_process_achievement(achievements[i]);
@@ -111,6 +124,12 @@ func _on_timer_timeout() -> void:
 
 
 func _on_base_ui_achievement_updated(achievement) -> void:
+	_ready();
+	show_popping_achievement(achievement);
+	pass # Replace with function body.
+
+
+func _on_coal_clicker_scene_achievement_updated(achievement: Variant) -> void:
 	_ready();
 	show_popping_achievement(achievement);
 	pass # Replace with function body.

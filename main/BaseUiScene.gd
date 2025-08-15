@@ -96,6 +96,9 @@ func show_buttons_unlock() -> void:
 	if ProgressionData.unlockedStoneSelling:
 		sellButtonStone.modulate.a = 1;
 		sellButtonStone.set_disabled(false);
+	if ProgressionData.unlockedCoalSelling:
+		sellButtonCoal.modulate.a = 1;
+		sellButtonCoal.set_disabled(false);
 	if ProgressionData.unlockedAchievements:
 		achievementButton.show();
 	else:
@@ -192,5 +195,10 @@ func _on_sell_button_pig_iron_button_down() -> void:
 
 
 func _on_stone_clicker_scene_update_unlocks() -> void:
+	show_buttons_unlock();
+	pass # Replace with function body.
+
+
+func _on_coal_clicker_scene_update_unlocks() -> void:
 	show_buttons_unlock();
 	pass # Replace with function body.

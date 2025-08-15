@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://2vvol0p1wt8x"]
+
+[ext_resource type="Texture2D" uid="uid://tbie2dxw2tq2" path="res://textures/coal_resource.png" id="1_57skb"]
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="1_jvcfq"]
+
+[resource]
+script = ExtResource("1_jvcfq")
+title = "Mining Coal"
+ID = "mining_coal"
+flavorText = "Looks useful?"
+description = "You get this by digging your first coal."
+state = 2
+icon = ExtResource("1_57skb")

@@ -24,6 +24,14 @@ func dig_resource(amount: int):
 		ProgressionData.unlockedStoneSelling = true;
 		emit_signal("update_unlocks");
 
+func _on_button_digger_button_down() -> void:
+	super();
+	# Achievement "Digger" -> acquire your first digger
+	AchievementData.digger.state = Achievement.State.DONE;
+	emit_signal("achievement_updated", AchievementData.digger);
+	ProgressionData.unlockedCoal = true;
+	emit_signal("update_unlocks");
+
 func _on_base_ui_update_unlocks() -> void:
 	if ProgressionData.unlockedDigger:
 		buttonDigger.show();

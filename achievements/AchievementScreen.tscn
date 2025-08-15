@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://eus5dihyklgy" path="res://textures/zerre_resource.png" id="4_ludyx"]
 [ext_resource type="Script" path="res://achievements/camera_2d.gd" id="6_gjiuk"]
 
-[node name="AchievementScreen" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton", "fourthAchievementContainer", "fourthAchievementTextureButton")]
+[node name="AchievementScreen" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton", "fourthAchievementContainer", "fourthAchievementTextureButton", "fifthAchievementContainer", "fifthAchievementTextureButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,8 @@ thirdAchievementContainer = NodePath("ThirdAchievementPanel")
 thirdAchievementTextureButton = NodePath("ThirdAchievementPanel/ThirdAchievementButton")
 fourthAchievementContainer = NodePath("FourthAchievementPanel")
 fourthAchievementTextureButton = NodePath("FourthAchievementPanel/FourthAchievementButton")
+fifthAchievementContainer = NodePath("FifthAchievementPanel")
+fifthAchievementTextureButton = NodePath("FifthAchievementPanel/FifthAchievementButton")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(578, 331)
@@ -78,6 +80,17 @@ offset_right = 928.0
 offset_bottom = 334.0
 
 [node name="FourthAchievementButton" type="TextureButton" parent="FourthAchievementPanel"]
+layout_mode = 2
+texture_normal = ExtResource("1_tkosy")
+stretch_mode = 0
+
+[node name="FifthAchievementPanel" type="PanelContainer" parent="."]
+offset_left = 884.0
+offset_top = 215.0
+offset_right = 924.0
+offset_bottom = 255.0
+
+[node name="FifthAchievementButton" type="TextureButton" parent="FifthAchievementPanel"]
 layout_mode = 2
 texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
