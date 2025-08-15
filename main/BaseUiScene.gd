@@ -35,6 +35,9 @@ extends Control
 
 @onready var mineContainer = $Mines;
 
+signal achievement_updated(achievement);
+signal update_unlocks();
+
 func _process(delta: float) -> void:
 	#sellButtonStone.mouse_filter = MOUSE_FILTER_PASS;
 	#print(sellButtonStone.mouse_filter);
@@ -67,23 +70,33 @@ func _ready():
 	merchantScene.hide();
 	achievementScene.hide();
 	
-	sellButtonStone.hide();
-	sellButtonCoal.hide();
-	sellButtonRawCopper.hide();
-	sellButtonRawIron.hide();
-	sellButtonCopperMatte.hide();
-	sellButtonPigIron.hide();
-	
-	show_buttons_unlock();
+	sellButtonStone.modulate.a = 0;
+	sellButtonStone.set_disabled(true);
+	#sellButtonStone.hide();
+	sellButtonCoal.modulate.a = 0;
+	sellButtonCoal.set_disabled(true);
+	#sellButtonCoal.hide();
+	sellButtonRawCopper.modulate.a = 0;
+	sellButtonRawCopper.set_disabled(true);
+	#sellButtonRawCopper.hide();
+	sellButtonRawIron.modulate.a = 0;
+	sellButtonRawIron.set_disabled(true);
+	#sellButtonRawIron.hide();
+	sellButtonCopperMatte.modulate.a = 0;
+	sellButtonCopperMatte.set_disabled(true);
+	#sellButtonCopperMatte.hide();
+	sellButtonPigIron.modulate.a = 0;
+	sellButtonPigIron.set_disabled(true);
+	#sellButtonPigIron.hide();
 
-func show_sell_buttons_unlock() -> void:
-	if ProgressionData.unlockedDigger:
-		sellButtonStone.show();
+	show_buttons_unlock();
 
 func show_buttons_unlock() -> void:
 	stoneMineButton.show();
+	if ProgressionData.unlockedStoneSelling:
+		sellButtonStone.modulate.a = 1;
+		sellButtonStone.set_disabled(false);
 	if ProgressionData.unlockedAchievements:
-		print("unlocked achievements")
 		achievementButton.show();
 	else:
 		achievementButton.hide();
@@ -96,7 +109,7 @@ func show_buttons_unlock() -> void:
 	else:
 		coalMineButton.hide();
 	rawIronMineButton.hide();
-	if ProgressionData.unlockedMerchant:
+	if ProgressionData.unlockedFurnace:
 		furnaceButton.show();
 	else:
 		furnaceButton.hide();
@@ -143,6 +156,11 @@ func show_buttons():
 
 
 func _on_sell_button_stone_button_down() -> void:
+	if AchievementData.first_to_riches.state != Achievement.State.DONE:
+		AchievementData.first_to_riches.state = Achievement.State.DONE;
+		emit_signal("achievement_updated", AchievementData.first_to_riches);
+		ProgressionData.unlockedDigger = true;
+		emit_signal("update_unlocks")
 	GameData.add_zerre_amount(GameData.STONE_VALUE * GameData.stoneAmount);
 	GameData.add_amount(GameData.STONE_ID, -GameData.stoneAmount);
 	pass # Replace with function body.

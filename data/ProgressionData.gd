@@ -1,5 +1,6 @@
 extends Node
 
+var unlockedStoneSelling = false;
 var unlockedCopper = false;
 var unlockedCoal = false;
 var unlockedIron = false;

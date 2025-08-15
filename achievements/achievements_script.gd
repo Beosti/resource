@@ -9,6 +9,9 @@ extends Control
 @export var thirdAchievementContainer: PanelContainer;
 @export var thirdAchievementTextureButton: TextureButton;
 
+@export var fourthAchievementContainer: PanelContainer;
+@export var fourthAchievementTextureButton: TextureButton;
+
 @onready var timer = $Timer;
 
 signal main_menu_reset;
@@ -30,23 +33,33 @@ func _ready() -> void:
 			"container": secondAchievementContainer
 		},
 		{
-			"achievement": AchievementData.digger,
+			"achievement": AchievementData.first_to_riches,
 			"button": thirdAchievementTextureButton,
-			"container": thirdAchievementContainer
+			"container": thirdAchievementContainer,
+		},
+		{
+			"achievement": AchievementData.digger,
+			"button": fourthAchievementTextureButton,
+			"container": fourthAchievementContainer
 		}
 	]
 	# Unlock second achievement if first is DONE
 	if AchievementData.mining_stone.state == Achievement.State.DONE and AchievementData.mining_stones.state != Achievement.State.DONE:
-		AchievementData.mining_stones.state = Achievement.State.DISCOVERED
+		AchievementData.mining_stones.state = Achievement.State.DISCOVERED;
 		secondAchievementContainer.show();
-	if AchievementData.mining_stones.state == Achievement.State.DONE and AchievementData.digger.state != Achievement.State.DONE:
-		AchievementData.digger.state = Achievement.State.DISCOVERED
+	if AchievementData.mining_stones.state == Achievement.State.DONE and AchievementData.first_to_riches.state != Achievement.State.DONE:
+		AchievementData.first_to_riches.state = Achievement.State.DISCOVERED;
 		thirdAchievementContainer.show();
+	if AchievementData.first_to_riches.state == Achievement.State.DONE and AchievementData.digger.state != Achievement.State.DONE:
+		AchievementData.digger.state = Achievement.State.DISCOVERED;
+		fourthAchievementContainer.show();
 	# Hide second if first is not DISCOVERED yet
-	if AchievementData.mining_stone.state == Achievement.State.DISCOVERED:
+	if AchievementData.mining_stone.state != Achievement.State.DONE:
 		secondAchievementContainer.hide()
 	if AchievementData.mining_stones.state != Achievement.State.DONE:
-		thirdAchievementContainer.hide()
+		thirdAchievementContainer.hide(); 
+	if AchievementData.first_to_riches.state != Achievement.State.DONE:
+		fourthAchievementContainer.hide()
 	# do something when receiving a signal
 	for i in achievements.size():
 		_process_achievement(achievements[i]);
@@ -94,4 +107,10 @@ func hide_popping_achievement() -> void:
 func _on_timer_timeout() -> void:
 	hide_popping_achievement();
 	timer.stop();
+	pass # Replace with function body.
+
+
+func _on_base_ui_achievement_updated(achievement) -> void:
+	_ready();
+	show_popping_achievement(achievement);
 	pass # Replace with function body.

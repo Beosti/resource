@@ -1,4 +1,13 @@
 [X] sell button next to the resources
 [ ] locking next steps
+  [X] (Mining Stone) starting with stone mine -> unlocking achievements screen
+  [X] (Mining 10 Stones) get 10 stones -> unlock sell button stones
+  [X] (First to riches) first time selling -> unlock digger button
+  [ ] (First digger) buy first digger -> unlock coalmine
+  [ ] (Digging coal) dig first coal -> sell button coal
+  [ ] (Digging loads o coal) dig 10 coals -> speed up button diggers
+  [ ] (Buy your first speed up) buy first speed up button diggers -> unlock the woods + unlock copper mine
+    [ ] (Finally something different) cut your first wood -> unlock sell button wood
+    [ ] (Looks more expensive) dig your first copper -> unlock sell button copper
 [ ] hiding resources until you have them
 [ ] add more achievement

@@ -21,11 +21,10 @@ func dig_resource(amount: int):
 	if (GameData.stoneMined == 10 && AchievementData.mining_stones.state != Achievement.State.DONE):
 		AchievementData.mining_stones.state = Achievement.State.DONE;
 		emit_signal("achievement_updated", AchievementData.mining_stones);
-		ProgressionData.unlockedDigger = true;
+		ProgressionData.unlockedStoneSelling = true;
 		emit_signal("update_unlocks");
 
-
-func _on_update_unlocks() -> void:
+func _on_base_ui_update_unlocks() -> void:
 	if ProgressionData.unlockedDigger:
 		buttonDigger.show();
 	pass # Replace with function body.
