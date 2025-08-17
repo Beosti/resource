@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://1wgfi72ec5hc"]
+
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="1_50xd8"]
+[ext_resource type="Texture2D" uid="uid://4tc3lw2lwdlu" path="res://textures/stone_resource.png" id="1_whxpy"]
+
+[resource]
+script = ExtResource("1_50xd8")
+title = "Mining 100 stone"
+ID = "mining_100_stone"
+flavorText = "I mean... We could speed up things?"
+description = "Mine a 100 stones"
+state = 2
+icon = ExtResource("1_whxpy")

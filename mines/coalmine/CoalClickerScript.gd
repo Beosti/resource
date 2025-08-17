@@ -11,9 +11,16 @@ func _ready():
 # override from AbstractClickerClass
 func dig_resource(amount: int):
 	super(amount);
+	GameData.coalMined += 1;
 	# Achievement "Digging coal" -> dig your first coal
 	if (AchievementData.mining_coal.state != Achievement.State.DONE):
-		ProgressionData.unlockedCoalSelling = true;
-		emit_signal("update_unlocks"); # -> unlocks sell button
+		ProgressionData.unlockedMerchant = true;
+		emit_signal("update_unlocks", "Unlocked: merchant tab"); # -> unlocks sell button
 		AchievementData.mining_coal.state = Achievement.State.DONE;
 		emit_signal("achievement_updated", AchievementData.mining_coal); # -> done achievement
+	if (GameData.coalMined == 10 && AchievementData.mining_coals.state != Achievement.State.DONE):
+		AchievementData.mining_coals.state = Achievement.State.DONE;
+		emit_signal("achievement_updated", AchievementData.mining_coals);
+		ProgressionData.unlockedCoalSelling = true;
+		emit_signal("update_unlocks", "Unlocked: coal selling");
+		pass;

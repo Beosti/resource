@@ -15,6 +15,7 @@ const COAL_RESOURCE = "Coal";
 const COAL_ID = "coal";
 const COAL_VALUE = 2;
 var coalAmount = 0;
+var coalMined = 0;
 const RAW_IRON_RESOURCE = "Raw Iron";
 const RAW_IRON_ID = "raw_iron";
 const RAW_IRON_VALUE = 3;

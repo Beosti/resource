@@ -15,6 +15,12 @@ extends Control
 @export var fifthAchievementContainer: PanelContainer;
 @export var fifthAchievementTextureButton: TextureButton;
 
+@export var sixthAchievementContainer: PanelContainer;
+@export var sixthAchievementTextureButton: TextureButton;
+
+@export var seventhAchievementContainer: PanelContainer;
+@export var seventhAchievementTextureButton: TextureButton;
+
 @onready var timer = $Timer;
 
 signal main_menu_reset;
@@ -49,6 +55,16 @@ func _ready() -> void:
 			"achievement": AchievementData.mining_coal,
 			"button": fifthAchievementTextureButton,
 			"container": fifthAchievementContainer,
+		},
+		{
+			"achievement": AchievementData.mining_coals,
+			"button": sixthAchievementTextureButton,
+			"container": sixthAchievementContainer,
+		},
+		{
+			"achievement": AchievementData.mining_100_stones,
+			"button": seventhAchievementTextureButton,
+			"container": seventhAchievementContainer,
 		}
 	]
 	# Unlock second achievement if first is DONE
@@ -64,28 +80,35 @@ func _ready() -> void:
 	if AchievementData.digger.state == Achievement.State.DONE and AchievementData.mining_coal.state != Achievement.State.DONE:
 		AchievementData.mining_coal.state = Achievement.State.DISCOVERED;
 		fifthAchievementContainer.show();
+	if AchievementData.mining_coal.state == Achievement.State.DONE and AchievementData.mining_coals.state != Achievement.State.DONE:
+		AchievementData.mining_coals.state = Achievement.State.DISCOVERED;
+		sixthAchievementContainer.show();
+	if AchievementData.mining_stones.state == Achievement.State.DONE and AchievementData.first_to_riches.state == Achievement.State.DONE and AchievementData.mining_100_stones.state != Achievement.State.DONE:
+		AchievementData.mining_100_stones.state = Achievement.State.DISCOVERED;
+		seventhAchievementContainer.show();
 	# Hide second if first is not DISCOVERED yet
 	if AchievementData.mining_stone.state != Achievement.State.DONE:
 		secondAchievementContainer.hide()
 	if AchievementData.mining_stones.state != Achievement.State.DONE:
-		thirdAchievementContainer.hide(); 
+		thirdAchievementContainer.hide();
+		if AchievementData.first_to_riches.state != Achievement.State.DONE:
+			seventhAchievementContainer.hide(); 
+
 	if AchievementData.first_to_riches.state != Achievement.State.DONE:
 		fourthAchievementContainer.hide()
 	if AchievementData.digger.state != Achievement.State.DONE:
 		fifthAchievementContainer.hide();
+	if AchievementData.mining_coal.state != Achievement.State.DONE:
+		sixthAchievementContainer.hide();
+		
 	# do something when receiving a signal
 	for i in achievements.size():
 		_process_achievement(achievements[i]);
-
-
-
-
 
 func _process_achievement(entry: Dictionary) -> void:
 	var ach = entry.get("achievement", null) as Achievement
 	var btn = entry["button"] as TextureButton
 	var container = entry["container"] as PanelContainer
-
 
 	match ach.state:
 		Achievement.State.DISCOVERED:
@@ -100,36 +123,17 @@ func _process_achievement(entry: Dictionary) -> void:
 			stylebox.bg_color = Color8(212, 175, 55)
 			container.add_theme_stylebox_override("panel", stylebox)
 
-
-func _on_stone_clicker_scene_achievement_updated(achievement) -> void:
-	_ready();
-	show_popping_achievement(achievement);
-	pass # Replace with function body.
+# Here goes all the achievements, when an achievement is done it gets triggered and comes here
+func on_update_achievement(achievement):
+	_ready(); # Calls the method to check if achievements are done or not and then changes them in the achievement screen
+	show_popping_achievement(achievement); # method handling the gui achievement pop
 
 func show_popping_achievement(achievement) -> void:
-	print("showing achievement");
-	emit_signal("achievement_gui_pop", achievement);
+	emit_signal("achievement_gui_pop", achievement); # -> sends signal to other node to show the achievement
 	timer.start();
 	pass;
 
-func hide_popping_achievement() -> void:
-	print("hiding achievement")
-	emit_signal("achievement_gui_pop", null);
-	pass;
-
 func _on_timer_timeout() -> void:
-	hide_popping_achievement();
+	emit_signal("achievement_gui_pop", null); # -> sends signal to other node to hide the achievement 
 	timer.stop();
-	pass # Replace with function body.
-
-
-func _on_base_ui_achievement_updated(achievement) -> void:
-	_ready();
-	show_popping_achievement(achievement);
-	pass # Replace with function body.
-
-
-func _on_coal_clicker_scene_achievement_updated(achievement: Variant) -> void:
-	_ready();
-	show_popping_achievement(achievement);
 	pass # Replace with function body.

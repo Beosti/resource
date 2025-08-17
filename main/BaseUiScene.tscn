@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cbksm33ruhkyo"]
+[gd_scene load_steps=19 format=3 uid="uid://cbksm33ruhkyo"]
 
 [ext_resource type="Script" path="res://main/BaseUiScene.gd" id="1_2sfg5"]
 [ext_resource type="PackedScene" uid="uid://c2r0cwflbfwf6" path="res://mines/stonemine/StoneClickerScene.tscn" id="2_e76hg"]
@@ -16,7 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://djdss5k68xxkq" path="res://furnace/FurnaceScreen.tscn" id="13_d1j76"]
 [ext_resource type="PackedScene" uid="uid://cvhj3u60j2qh8" path="res://merchant/MerchantScene.tscn" id="15_v5x0y"]
 [ext_resource type="PackedScene" uid="uid://cnkohmvvrg6sv" path="res://achievements/AchievementScreen.tscn" id="16_lc1m6"]
-[ext_resource type="Script" path="res://main/achievement_pop.gd" id="17_7l3xa"]
+[ext_resource type="Script" path="res://main/achievement_pop.gd" id="17_flnjc"]
+[ext_resource type="Script" path="res://main/unlock_pop.gd" id="18_tkuvn"]
 
 [node name="BaseUi" type="Control" node_paths=PackedStringArray("stoneMineButton", "copperMineButton", "coalMineButton", "rawIronMineButton", "furnaceButton", "merchantButton", "stoneClickerScene", "copperClickerScene", "coalClickerScene", "rawIronClickerScene", "furnaceScene", "stoneResourceLabel", "coalResourceLabel", "rawCopperResourceLabel", "rawIronResourceLabel", "copperMatteResourceLabel", "pigIronResourceLabel", "zerreLabel")]
 layout_mode = 3
@@ -190,9 +191,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -180.0
-offset_top = -180.0
+offset_top = -124.0
 offset_right = 180.0
-offset_bottom = 180.0
+offset_bottom = 236.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -261,35 +262,47 @@ layout_mode = 1
 mouse_filter = 2
 
 [node name="AchievementPop" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -171.0
-offset_top = -239.0
-offset_right = 169.0
-offset_bottom = -189.0
+offset_left = -180.0
+offset_top = 55.0
+offset_right = 180.0
+offset_bottom = 105.0
 grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("17_7l3xa")
+script = ExtResource("17_flnjc")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AchievementPop"]
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
-scroll_active = false
-context_menu_enabled = true
 
-[connection signal="achievement_updated" from="." to="AchievementScreen" method="_on_base_ui_achievement_updated"]
-[connection signal="update_unlocks" from="." to="Mines/StoneClickerScene" method="_on_base_ui_update_unlocks"]
-[connection signal="achievement_updated" from="Mines/CoalClickerScene" to="AchievementScreen" method="_on_coal_clicker_scene_achievement_updated"]
-[connection signal="update_unlocks" from="Mines/CoalClickerScene" to="." method="_on_coal_clicker_scene_update_unlocks"]
-[connection signal="achievement_updated" from="Mines/StoneClickerScene" to="AchievementScreen" method="_on_stone_clicker_scene_achievement_updated"]
-[connection signal="update_unlocks" from="Mines/StoneClickerScene" to="." method="_on_stone_clicker_scene_update_unlocks"]
-[connection signal="update_unlocks" from="Mines/StoneClickerScene" to="Mines/StoneClickerScene" method="_on_update_unlocks"]
+[node name="UnlockPop" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 120.0
+offset_right = 180.0
+offset_bottom = 150.0
+grow_horizontal = 2
+script = ExtResource("18_tkuvn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UnlockPop"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[connection signal="achievement_updated" from="." to="AchievementScreen" method="on_update_achievement"]
+[connection signal="unlock_digger_stone" from="." to="Mines/StoneClickerScene" method="digger_button_show"]
+[connection signal="unlock_pop" from="." to="UnlockPop" method="_on_unlock_gui_pop"]
+[connection signal="update_unlocks" from="." to="." method="_unlock_event"]
+[connection signal="achievement_updated" from="Mines/CoalClickerScene" to="AchievementScreen" method="on_update_achievement"]
+[connection signal="update_unlocks" from="Mines/CoalClickerScene" to="." method="_unlock_event"]
+[connection signal="achievement_updated" from="Mines/StoneClickerScene" to="AchievementScreen" method="on_update_achievement"]
+[connection signal="update_unlocks" from="Mines/StoneClickerScene" to="." method="_unlock_event"]
 [connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonStone" to="." method="_on_sell_button_stone_button_down"]
 [connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonCoal" to="." method="_on_sell_button_coal_button_down"]
 [connection signal="button_down" from="ContainerResources/MarginContainer/VBoxContainer/GridContainer/SellButtonRawCopper" to="." method="_on_sell_button_raw_copper_button_down"]

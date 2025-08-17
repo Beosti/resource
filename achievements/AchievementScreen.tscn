@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://eus5dihyklgy" path="res://textures/zerre_resource.png" id="4_ludyx"]
 [ext_resource type="Script" path="res://achievements/camera_2d.gd" id="6_gjiuk"]
 
-[node name="AchievementScreen" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton", "fourthAchievementContainer", "fourthAchievementTextureButton", "fifthAchievementContainer", "fifthAchievementTextureButton")]
+[node name="AchievementScreen" type="Control" node_paths=PackedStringArray("firstAchievementContainer", "firstAchievementTextureButton", "secondAchievementContainer", "secondAchievementTextureButton", "thirdAchievementContainer", "thirdAchievementTextureButton", "fourthAchievementContainer", "fourthAchievementTextureButton", "fifthAchievementContainer", "fifthAchievementTextureButton", "sixthAchievementContainer", "sixthAchievementTextureButton", "seventhAchievementContainer", "seventhAchievementTextureButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +23,10 @@ fourthAchievementContainer = NodePath("FourthAchievementPanel")
 fourthAchievementTextureButton = NodePath("FourthAchievementPanel/FourthAchievementButton")
 fifthAchievementContainer = NodePath("FifthAchievementPanel")
 fifthAchievementTextureButton = NodePath("FifthAchievementPanel/FifthAchievementButton")
+sixthAchievementContainer = NodePath("SixthAchievementPanel")
+sixthAchievementTextureButton = NodePath("SixthAchievementPanel/SixthAchievementButton")
+seventhAchievementContainer = NodePath("SeventhAchievementPanel")
+seventhAchievementTextureButton = NodePath("SeventhAchievementPanel/SeventhAchievementButton")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(578, 331)
@@ -37,10 +41,10 @@ script = ExtResource("6_gjiuk")
 
 [node name="FirstAchievementPanel" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 303.0
-offset_right = 440.0
-offset_bottom = 343.0
+offset_left = 278.0
+offset_top = 309.0
+offset_right = 318.0
+offset_bottom = 349.0
 tooltip_text = "test"
 
 [node name="FirstAchievementButton" type="TextureButton" parent="FirstAchievementPanel"]
@@ -50,9 +54,9 @@ stretch_mode = 0
 
 [node name="SecondAchievementPanel" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 524.0
+offset_left = 412.0
 offset_top = 305.0
-offset_right = 564.0
+offset_right = 452.0
 offset_bottom = 345.0
 
 [node name="SecondAchievementButton" type="TextureButton" parent="SecondAchievementPanel"]
@@ -62,10 +66,11 @@ texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
 
 [node name="ThirdAchievementPanel" type="PanelContainer" parent="."]
-offset_left = 708.0
-offset_top = 301.0
-offset_right = 748.0
-offset_bottom = 341.0
+layout_mode = 0
+offset_left = 557.0
+offset_top = 304.0
+offset_right = 597.0
+offset_bottom = 344.0
 
 [node name="ThirdAchievementButton" type="TextureButton" parent="ThirdAchievementPanel"]
 layout_mode = 2
@@ -74,10 +79,10 @@ stretch_mode = 0
 
 [node name="FourthAchievementPanel" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 294.0
-offset_right = 928.0
-offset_bottom = 334.0
+offset_left = 659.0
+offset_top = 300.0
+offset_right = 699.0
+offset_bottom = 340.0
 
 [node name="FourthAchievementButton" type="TextureButton" parent="FourthAchievementPanel"]
 layout_mode = 2
@@ -85,12 +90,36 @@ texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
 
 [node name="FifthAchievementPanel" type="PanelContainer" parent="."]
-offset_left = 884.0
-offset_top = 215.0
-offset_right = 924.0
-offset_bottom = 255.0
+layout_mode = 0
+offset_left = 659.0
+offset_top = 363.0
+offset_right = 699.0
+offset_bottom = 403.0
 
 [node name="FifthAchievementButton" type="TextureButton" parent="FifthAchievementPanel"]
+layout_mode = 2
+texture_normal = ExtResource("1_tkosy")
+stretch_mode = 0
+
+[node name="SixthAchievementPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 741.0
+offset_top = 360.0
+offset_right = 781.0
+offset_bottom = 400.0
+
+[node name="SixthAchievementButton" type="TextureButton" parent="SixthAchievementPanel"]
+layout_mode = 2
+texture_normal = ExtResource("1_tkosy")
+stretch_mode = 0
+
+[node name="SeventhAchievementPanel" type="PanelContainer" parent="."]
+offset_left = 411.0
+offset_top = 216.0
+offset_right = 451.0
+offset_bottom = 256.0
+
+[node name="SeventhAchievementButton" type="TextureButton" parent="SeventhAchievementPanel"]
 layout_mode = 2
 texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
@@ -128,7 +157,7 @@ layout_mode = 2
 text = "Other Mine 2"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.402
+wait_time = 2.5
 
 [connection signal="button_down" from="OtherPlaces2/MarginContainer/GridContainer/MainUiButton" to="." method="_on_main_ui_button_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

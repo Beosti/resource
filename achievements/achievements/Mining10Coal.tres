@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://kwala2sei3uq"]
+
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="1_a7e0x"]
+[ext_resource type="Texture2D" uid="uid://tbie2dxw2tq2" path="res://textures/coal_resource.png" id="1_ig6sg"]
+
+[resource]
+script = ExtResource("1_a7e0x")
+title = "Mining coals"
+ID = "mining_coals"
+flavorText = "I wasn't a bad boy..."
+description = "mine 10 coal"
+state = 2
+icon = ExtResource("1_ig6sg")

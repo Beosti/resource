@@ -37,6 +37,8 @@ extends Control
 
 signal achievement_updated(achievement);
 signal update_unlocks();
+signal unlock_pop();
+signal unlock_digger_stone();
 
 func _process(delta: float) -> void:
 	#sellButtonStone.mouse_filter = MOUSE_FILTER_PASS;
@@ -162,8 +164,7 @@ func _on_sell_button_stone_button_down() -> void:
 	if AchievementData.first_to_riches.state != Achievement.State.DONE:
 		AchievementData.first_to_riches.state = Achievement.State.DONE;
 		emit_signal("achievement_updated", AchievementData.first_to_riches);
-		ProgressionData.unlockedDigger = true;
-		emit_signal("update_unlocks")
+		emit_signal("update_unlocks", "Unlocked: diggers")
 	GameData.add_zerre_amount(GameData.STONE_VALUE * GameData.stoneAmount);
 	GameData.add_amount(GameData.STONE_ID, -GameData.stoneAmount);
 	pass # Replace with function body.
@@ -193,12 +194,11 @@ func _on_sell_button_pig_iron_button_down() -> void:
 	GameData.add_amount(GameData.PIG_IRON_ID, -GameData.pigIronAmount);
 	pass # Replace with function body.
 
-
-func _on_stone_clicker_scene_update_unlocks() -> void:
-	show_buttons_unlock();
-	pass # Replace with function body.
-
-
-func _on_coal_clicker_scene_update_unlocks() -> void:
-	show_buttons_unlock();
-	pass # Replace with function body.
+# Here comes all the unlock events
+func _unlock_event(unlock_string: String = "") -> void:
+	show_buttons_unlock(); # Shows new buttons depending on what you unlock
+	if (!ProgressionData.unlockedDigger && unlock_string == "Unlocked: diggers"):
+		ProgressionData.unlockedDigger = true;
+		emit_signal("unlock_digger_stone");
+	if unlock_string != "":
+		emit_signal("unlock_pop", unlock_string); # -> sends signal to unlock pop panelcontainer to appear
