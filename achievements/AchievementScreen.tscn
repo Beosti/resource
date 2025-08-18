@@ -114,6 +114,7 @@ texture_normal = ExtResource("1_tkosy")
 stretch_mode = 0
 
 [node name="SeventhAchievementPanel" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 411.0
 offset_top = 216.0
 offset_right = 451.0

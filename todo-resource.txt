@@ -2,11 +2,11 @@
 [ ] locking next steps
   [X] (Mining Stone) starting with stone mine -> unlocking achievements screen
   [X] (Mining 10 Stones) get 10 stones -> unlock sell button stones
-    [ ] (I mean... We could speed up things?) get your first 100 stone mined -> unlock speed up button stone
+    [X] (I mean... We could speed up things?) get your first 100 stone mined -> unlock speed up button stone
   [X] (First to riches) first time selling -> unlock digger button
   [X] (First digger) buy first digger -> unlock coalmine
   [X] (Digging coal) dig first coal -> unlock merchant
-  [Xhttps://x.com/blurayangel/status/1956839273371672631] (Digging coals) dig first 10 coals -> sell button coal
+  [X] (Digging coals) dig first 10 coals -> sell button coal
     [ ] (Wow, time to speed up this black stuff!) get your first 100 coal mined -> unlock speed up button coal
   [ ] (Buy your first speed up) buy first speed up button diggers -> unlock the woods + unlock copper mine
     [ ] (Finally something different) cut your first wood -> unlock sell button wood

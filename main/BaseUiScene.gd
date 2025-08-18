@@ -39,6 +39,7 @@ signal achievement_updated(achievement);
 signal update_unlocks();
 signal unlock_pop();
 signal unlock_digger_stone();
+signal unlock_speed_digger_stone();
 
 func _process(delta: float) -> void:
 	#sellButtonStone.mouse_filter = MOUSE_FILTER_PASS;
@@ -200,5 +201,8 @@ func _unlock_event(unlock_string: String = "") -> void:
 	if (!ProgressionData.unlockedDigger && unlock_string == "Unlocked: diggers"):
 		ProgressionData.unlockedDigger = true;
 		emit_signal("unlock_digger_stone");
+	if (!ProgressionData.unlockedStoneSpeedDigger && unlock_string == "Unlocked: Digger speed up"):
+		ProgressionData.unlockedStoneSpeedDigger = true;
+		emit_signal("unlock_speed_digger_stone");
 	if unlock_string != "":
 		emit_signal("unlock_pop", unlock_string); # -> sends signal to unlock pop panelcontainer to appear
