@@ -3,14 +3,22 @@
   [X] (Mining Stone) starting with stone mine -> unlocking achievements screen
   [X] (Mining 10 Stones) get 10 stones -> unlock sell button stones
     [X] (I mean... We could speed up things?) get your first 100 stone mined -> unlock speed up button stone
+    [ ] (When do I get to automate this whole thing?) get your first 1000 stone mined -> unlock automatic seller
   [X] (First to riches) first time selling -> unlock digger button
   [X] (First digger) buy first digger -> unlock coalmine
   [X] (Digging coal) dig first coal -> unlock merchant
   [X] (Digging coals) dig first 10 coals -> sell button coal
-    [ ] (Wow, time to speed up this black stuff!) get your first 100 coal mined -> unlock speed up button coal
-  [ ] (Buy your first speed up) buy first speed up button diggers -> unlock the woods + unlock copper mine
-    [ ] (Finally something different) cut your first wood -> unlock sell button wood
-    [ ] (Looks more expensive) dig your first copper -> unlock sell button copper
+    [X] (Selling coals) sell first 10 coals -> get digger button + copper
+    [X] (Wow, time to speed up this black stuff!) get your first 100 coal mined -> speed up coal
+    [ ] (Damn, guess this is an idle game afterall...) mine your first 1000 coal -> Automatic seller of coal
+  [ ] (Digging copper) dig first copper -> unlock furnace
+    [ ] (Getting more copper) get 10 copper -> digger + iron mine
+    [ ] (looks tasty...) get 100 copper -> speed-up digger
+    [ ] (wow, that's a lot) get 1000 copper -> automatic seller of copper
+  [ ] (Digging iron) dig first iron -> unlock crafting
+    [ ] (Digging loads of iron) dig 10 iron -> unlock digger + seller
+    [ ] (Digging loaaaaads of iron) dig 100 iron -> unlock speed-up digger
+[ ] adding teleportation easier inbetween menu's down right button
 [ ] hiding resources until you have them
 [ ] add more achievement
 [X] popping window to say you unlocked something new

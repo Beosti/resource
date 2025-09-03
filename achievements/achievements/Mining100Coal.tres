@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://cg5e1g33q4kd6"]
+
+[ext_resource type="Texture2D" uid="uid://tbie2dxw2tq2" path="res://textures/coal_resource.png" id="1_fw214"]
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="1_ooln8"]
+
+[resource]
+script = ExtResource("1_ooln8")
+title = "Mining 100 coal"
+ID = "mining_100_coal"
+flavorText = "Wow, time to speed up this black stuff!"
+description = "Mine your first 100 coal"
+state = 2
+icon = ExtResource("1_fw214")

@@ -51,6 +51,7 @@ zerreLabel = NodePath("ContainerResources/MarginContainer/VBoxContainer/GridCont
 
 [node name="CoalClickerScene" parent="Mines" instance=ExtResource("4_2mc48")]
 visible = false
+mouse_filter = 2
 
 [node name="RawCopperClickerScene" parent="Mines" instance=ExtResource("3_rfky2")]
 visible = false
@@ -296,8 +297,10 @@ bbcode_enabled = true
 fit_content = true
 
 [connection signal="achievement_updated" from="." to="AchievementScreen" method="on_update_achievement"]
+[connection signal="unlock_digger_coal" from="." to="Mines/CoalClickerScene" method="digger_button_show"]
 [connection signal="unlock_digger_stone" from="." to="Mines/StoneClickerScene" method="digger_button_show"]
 [connection signal="unlock_pop" from="." to="UnlockPop" method="_on_unlock_gui_pop"]
+[connection signal="unlock_speed_digger_coal" from="." to="Mines/CoalClickerScene" method="_on_unlock_speed_digger_coal"]
 [connection signal="unlock_speed_digger_stone" from="." to="Mines/StoneClickerScene" method="digger_speed_up_button_show"]
 [connection signal="update_unlocks" from="." to="." method="_unlock_event"]
 [connection signal="achievement_updated" from="Mines/CoalClickerScene" to="AchievementScreen" method="on_update_achievement"]

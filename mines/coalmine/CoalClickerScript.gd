@@ -23,4 +23,14 @@ func dig_resource(amount: int):
 		emit_signal("achievement_updated", AchievementData.mining_coals);
 		ProgressionData.unlockedCoalSelling = true;
 		emit_signal("update_unlocks", "Unlocked: coal selling");
-		pass;
+	if (GameData.coalMined == 100 && AchievementData.mining_100_coal.state != Achievement.State.DONE):
+		AchievementData.mining_100_coal.state = Achievement.State.DONE;
+		emit_signal("achievement_updated", AchievementData.mining_100_coal);
+		emit_signal("update_unlocks", "Unlocked: coal speed up digger", AchievementData.mining_100_coal.title) 
+
+func digger_button_show() -> void:
+	buttonDigger.show();
+
+
+func _on_unlock_speed_digger_coal() -> void:
+	buttonTimer.show();

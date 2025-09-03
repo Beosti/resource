@@ -39,7 +39,9 @@ signal achievement_updated(achievement);
 signal update_unlocks();
 signal unlock_pop();
 signal unlock_digger_stone();
+signal unlock_digger_coal();
 signal unlock_speed_digger_stone();
+signal unlock_speed_digger_coal();
 
 func _process(delta: float) -> void:
 	#sellButtonStone.mouse_filter = MOUSE_FILTER_PASS;
@@ -171,6 +173,10 @@ func _on_sell_button_stone_button_down() -> void:
 	pass # Replace with function body.
 
 func _on_sell_button_coal_button_down() -> void:
+	if (AchievementData.selling_coal.state != Achievement.State.DONE):
+		AchievementData.selling_coal.state = Achievement.State.DONE;
+		emit_signal("achievement_updated", AchievementData.selling_coal);
+		emit_signal("update_unlocks", "Unlocked: Copper mine + Coal digger", AchievementData.selling_coal.title);
 	GameData.add_zerre_amount(GameData.COAL_VALUE * GameData.coalAmount);
 	GameData.add_amount(GameData.COAL_ID, -GameData.coalAmount);
 	pass # Replace with function body.
@@ -196,8 +202,13 @@ func _on_sell_button_pig_iron_button_down() -> void:
 	pass # Replace with function body.
 
 # Here comes all the unlock events
-func _unlock_event(unlock_string: String = "") -> void:
-	show_buttons_unlock(); # Shows new buttons depending on what you unlock
+func _unlock_event(unlock_string: String = "", unlock_string_title_achievement: String = "") -> void:
+	if (unlock_string_title_achievement == AchievementData.selling_coal.title):
+		emit_signal("unlock_digger_coal");
+		ProgressionData.unlockedCoalDigger = true;
+		ProgressionData.unlockedCopper = true;
+	if (unlock_string_title_achievement == AchievementData.mining_100_coal.title):
+		emit_signal("unlock_speed_digger_coal");
 	if (!ProgressionData.unlockedDigger && unlock_string == "Unlocked: diggers"):
 		ProgressionData.unlockedDigger = true;
 		emit_signal("unlock_digger_stone");
@@ -206,3 +217,4 @@ func _unlock_event(unlock_string: String = "") -> void:
 		emit_signal("unlock_speed_digger_stone");
 	if unlock_string != "":
 		emit_signal("unlock_pop", unlock_string); # -> sends signal to unlock pop panelcontainer to appear
+	show_buttons_unlock(); # Shows new buttons depending on what you unlock

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=3 format=3 uid="uid://lakdmbx57tiv"]
+
+[ext_resource type="Texture2D" uid="uid://tbie2dxw2tq2" path="res://textures/coal_resource.png" id="1_vvdhk"]
+[ext_resource type="Script" path="res://achievements/abstract/AchievementAbstract.gd" id="2_h0wx2"]
+
+[resource]
+script = ExtResource("2_h0wx2")
+title = "Selling Coal"
+ID = "selling_coal"
+flavorText = "It's worth something?"
+description = "Sell your first coal"
+state = 2
+icon = ExtResource("1_vvdhk")

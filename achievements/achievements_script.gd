@@ -21,6 +21,14 @@ extends Control
 @export var seventhAchievementContainer: PanelContainer;
 @export var seventhAchievementTextureButton: TextureButton;
 
+# MINING 100 COAL QUEST -> UNLOCKING SPEED UP
+@export var eighthAchievementContainer: PanelContainer;
+@export var eighthAchievementTextureButton: TextureButton;
+
+# SELLING COAL QUEST -> UNLOCKING COPPER + DIGGER
+@export var ninthAchievementContainer: PanelContainer;
+@export var ninthAchievementTextureButton: TextureButton;
+
 @onready var timer = $Timer;
 
 signal main_menu_reset;
@@ -65,6 +73,16 @@ func _ready() -> void:
 			"achievement": AchievementData.mining_100_stones,
 			"button": seventhAchievementTextureButton,
 			"container": seventhAchievementContainer,
+		},
+		{
+			"achievement": AchievementData.mining_100_coal,
+			"button": eighthAchievementTextureButton,
+			"container": eighthAchievementContainer,
+		},
+		{
+			"achievement": AchievementData.selling_coal,
+			"button": ninthAchievementTextureButton,
+			"container": ninthAchievementContainer,
 		}
 	]
 	# Unlock second achievement if first is DONE
@@ -83,24 +101,40 @@ func _ready() -> void:
 	if AchievementData.mining_coal.state == Achievement.State.DONE and AchievementData.mining_coals.state != Achievement.State.DONE:
 		AchievementData.mining_coals.state = Achievement.State.DISCOVERED;
 		sixthAchievementContainer.show();
+	if (AchievementData.selling_coal.state == Achievement.State.DONE and AchievementData.selling_coal.state != Achievement.State.DONE):
+		AchievementData.selling_coal.state = Achievement.State.DISCOVERED;
+		ninthAchievementContainer.show();
 	if AchievementData.mining_stones.state == Achievement.State.DONE and AchievementData.first_to_riches.state == Achievement.State.DONE and AchievementData.mining_100_stones.state != Achievement.State.DONE:
 		AchievementData.mining_100_stones.state = Achievement.State.DISCOVERED;
 		seventhAchievementContainer.show();
+	if AchievementData.mining_coals.state == Achievement.State.DONE and AchievementData.mining_100_coal.state != Achievement.State.DONE:
+		AchievementData.mining_100_coal.state = Achievement.State.DISCOVERED;
+		AchievementData.selling_coal.state = Achievement.State.DISCOVERED;
+		eighthAchievementContainer.show();
+		ninthAchievementContainer.show();
 	# Hide second if first is not DISCOVERED yet
 	if AchievementData.mining_stone.state != Achievement.State.DONE:
 		secondAchievementContainer.hide()
+		print("check 1")
 	if AchievementData.mining_stones.state != Achievement.State.DONE:
 		thirdAchievementContainer.hide();
+		print("check 2")
 		if AchievementData.first_to_riches.state != Achievement.State.DONE:
 			seventhAchievementContainer.hide(); 
-
+			print("check 3")
 	if AchievementData.first_to_riches.state != Achievement.State.DONE:
 		fourthAchievementContainer.hide()
+		print("check 4")
 	if AchievementData.digger.state != Achievement.State.DONE:
 		fifthAchievementContainer.hide();
+		print("check 5")
 	if AchievementData.mining_coal.state != Achievement.State.DONE:
 		sixthAchievementContainer.hide();
-		
+		print("check 6")
+	if (AchievementData.mining_coals.state != Achievement.State.DONE):
+		print("check 7")
+		eighthAchievementContainer.hide();
+		ninthAchievementContainer.hide();
 	# do something when receiving a signal
 	for i in achievements.size():
 		_process_achievement(achievements[i]);
